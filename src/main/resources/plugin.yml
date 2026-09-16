@@ -1,0 +1,21 @@
+name: MoneySMP
+version: ${project.version}
+main: dev.flame.moneysmp.MoneySMP
+api-version: '1.21'
+author: Flame
+description: Economy & Teams System
+
+commands:
+  moneysmp:
+    description: MoneySMP main command
+  pay:
+    description: Pay another player
+    usage: /pay <player> <amount>
+  balance:
+    description: Check a balance
+    aliases: [bal]
+
+permissions:
+  moneysmp.admin:
+    description: Full access to all admin commands
+    default: op
