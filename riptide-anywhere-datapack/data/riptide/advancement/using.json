@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "using": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:trident",
+          "predicates": {
+            "minecraft:enchantments": [
+              {
+                "enchantments": ["minecraft:riptide", "riptide:riptide"]
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "riptide:using"
+  }
+}

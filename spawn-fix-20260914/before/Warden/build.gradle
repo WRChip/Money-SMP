@@ -1,0 +1,120 @@
+plugins {
+	id 'fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+	id "com.modrinth.minotaur" version "2.+"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	maven { url = "https://maven.isxander.dev/releases" }
+	maven { url = "https://maven.terraformersmc.com/releases" }
+}
+
+loom {
+	mods {
+		"warden" {
+			sourceSet sourceSets.main
+		}
+	}
+}
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	// bundled so players don't have to install it separately; loader skips it if a newer copy is present
+	modImplementation include("dev.isxander:yet-another-config-lib:${project.yacl_version}")
+	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+sourceSets {
+    performance {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+
+tasks.register('performanceCheck', JavaExec) {
+    dependsOn performanceClasses
+    classpath = sourceSets.performance.runtimeClasspath
+    mainClass = 'com.warden.PerformanceLauncher'
+    systemProperty 'fabric.development', 'true'
+    systemProperty 'fabric.remapClasspathFile', file('.gradle/loom-cache/remapClasspath.txt').absolutePath
+    systemProperty 'fabric.classPathGroups', sourceSets.main.output.files.join(File.pathSeparator)
+}
+
+check.dependsOn performanceCheck
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+modrinth {
+	token = System.getenv("MODRINTH_TOKEN")
+	projectId = project.modrinth_project_id
+	versionNumber = project.mod_version
+	versionType = "release"
+	uploadFile = remapJar
+	additionalFiles = [sourcesJar]
+	gameVersions = ["1.21.11"]
+	loaders = ["fabric"]
+	dependencies {
+		required.project "fabric-api"
+		optional.project "yacl"
+		optional.project "modmenu"
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}

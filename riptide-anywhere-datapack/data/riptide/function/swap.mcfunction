@@ -1,0 +1,3 @@
+$execute if items entity @s $(slot) minecraft:trident[minecraft:enchantments~[{enchantments:"$(from)",levels:1}]] run item modify entity @s $(slot) {function:"minecraft:set_enchantments",enchantments:{"$(from)":0,"$(to)":1}}
+$execute if items entity @s $(slot) minecraft:trident[minecraft:enchantments~[{enchantments:"$(from)",levels:2}]] run item modify entity @s $(slot) {function:"minecraft:set_enchantments",enchantments:{"$(from)":0,"$(to)":2}}
+$execute if items entity @s $(slot) minecraft:trident[minecraft:enchantments~[{enchantments:"$(from)",levels:3}]] run item modify entity @s $(slot) {function:"minecraft:set_enchantments",enchantments:{"$(from)":0,"$(to)":3}}

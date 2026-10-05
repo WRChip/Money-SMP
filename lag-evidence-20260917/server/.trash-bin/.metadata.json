@@ -1,0 +1,68 @@
+{
+    "1789548813_00053f21": {
+        "trashPath": "/.trash-bin/server_1789548813_00053f21.properties",
+        "originalPath": "/server.properties",
+        "originalName": "server.properties",
+        "deletedAt": "2026-09-16T18:53:34+10:00",
+        "deletedFrom": "/",
+        "timestamp": 1789548813,
+        "hash": "00053f21",
+        "isDirectory": false,
+        "size": 54
+    },
+    "1789548906_99a95fbf": {
+        "trashPath": "/.trash-bin/README_1789548906_99a95fbf.txt",
+        "originalPath": "/README.txt",
+        "originalName": "README.txt",
+        "deletedAt": "2026-09-16T18:55:07+10:00",
+        "deletedFrom": "/",
+        "timestamp": 1789548906,
+        "hash": "99a95fbf",
+        "isDirectory": false,
+        "size": 1503
+    },
+    "1789548919_d41b6682": {
+        "trashPath": "/.trash-bin/fabric-1.21.11-loader-0.19.5-pterodactyl_1789548919_d41b6682.zip",
+        "originalPath": "/fabric-1.21.11-loader-0.19.5-pterodactyl.zip",
+        "originalName": "fabric-1.21.11-loader-0.19.5-pterodactyl.zip",
+        "deletedAt": "2026-09-16T18:55:20+10:00",
+        "deletedFrom": "/",
+        "timestamp": 1789548919,
+        "hash": "d41b6682",
+        "isDirectory": false,
+        "size": 99357905
+    },
+    "1789551848_79aee1c4": {
+        "trashPath": "/.trash-bin/world_1789551848_79aee1c4",
+        "originalPath": "/world",
+        "originalName": "world",
+        "deletedAt": "2026-09-16T19:44:09+10:00",
+        "deletedFrom": "/",
+        "timestamp": 1789551848,
+        "hash": "79aee1c4",
+        "isDirectory": true,
+        "size": 4096
+    },
+    "1789552683_299dfc7f": {
+        "trashPath": "/.trash-bin/world_1789552683_299dfc7f",
+        "originalPath": "/world",
+        "originalName": "world",
+        "deletedAt": "2026-09-16T19:58:04+10:00",
+        "deletedFrom": "/",
+        "timestamp": 1789552683,
+        "hash": "299dfc7f",
+        "isDirectory": true,
+        "size": 4096
+    },
+    "1789580218_470f6880": {
+        "trashPath": "/.trash-bin/mods/warden-1.0.6-pre.4_1789580218_470f6880.jar",
+        "originalPath": "/mods/warden-1.0.6-pre.4.jar",
+        "originalName": "warden-1.0.6-pre.4.jar",
+        "deletedAt": "2026-09-17T03:37:00+10:00",
+        "deletedFrom": "/mods",
+        "timestamp": 1789580218,
+        "hash": "470f6880",
+        "isDirectory": false,
+        "size": 1257281
+    }
+}

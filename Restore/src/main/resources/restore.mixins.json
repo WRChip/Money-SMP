@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "dev.flame.restore.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "server": [
+    "SpawnLocatingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

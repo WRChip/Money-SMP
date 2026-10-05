@@ -1,0 +1,118 @@
+{
+  "server/.trash-bin/.metadata.json": {
+    "bytes": 2368,
+    "sha256": "cb9baebde89e30f2561fa4530d3289429e2a61451ebffcfc57ce2742c6f036cf"
+  },
+  "server/config/antixray.toml": {
+    "bytes": 827,
+    "sha256": "6b365812291fb635b7e2dea096f52bed88e1d7ada9656bdda1dbc2ec759a3e94"
+  },
+  "server/config/c2me.toml": {
+    "bytes": 9224,
+    "sha256": "d6015fae7170b2d61ace9c7eb728f876c917be14f871161b335f39b6a64ad10d"
+  },
+  "server/config/chunky/config.json": {
+    "bytes": 146,
+    "sha256": "c7384a22595488f79f3125b22cc175eb729267267807a084479419349797abc8"
+  },
+  "server/config/chunky/tasks/minecraft/overworld.properties": {
+    "bytes": 137,
+    "sha256": "d8b5dfeb876550b8670ce088b2dbc716540810cc438dfadddb6b0349a27a4571"
+  },
+  "server/config/chunky/tasks/minecraft/the_end.properties": {
+    "bytes": 135,
+    "sha256": "38ed85a0c5e3165132f01ad49cfe81ef9c3b918029f6b7c21c28f5e81c579995"
+  },
+  "server/config/chunky/tasks/minecraft/the_nether.properties": {
+    "bytes": 137,
+    "sha256": "7e8949179a55b0dfb553ff7ae8db32521516fc1ff781bf64e5458632dc28bac7"
+  },
+  "server/config/lithium.properties": {
+    "bytes": 267,
+    "sha256": "6cf6f83720071fd1657c8e79b357caf68d40f410ae123e5f922483eb1d1d25be"
+  },
+  "server/config/spark/activity.json": {
+    "bytes": 680,
+    "sha256": "5721a81b7089e2fad389bcb5356d673509ac267df500594f5feb5cde68cf595f"
+  },
+  "server/config/spark/config.json": {
+    "bytes": 117,
+    "sha256": "992ba9f3a4a7ce3de112eb95575328956fdc3ce6781c455ebce7b23db7e7da42"
+  },
+  "server/config/vmp.properties": {
+    "bytes": 390,
+    "sha256": "9139dec76f8b0abba88383a7863da087925a9a5dd7428039ed8ee00e99c83ea6"
+  },
+  "server/config/warden.json": {
+    "bytes": 1879,
+    "sha256": "a64b7d7cf7b6d4de0e7cbacb60b7cbbec76c3469d582750abf73a39c43784786"
+  },
+  "server/crash-reports/crash-2026-09-16_14.06.45-server.txt": {
+    "bytes": 18329,
+    "sha256": "4c4f3bbfcb934b2afdf2373c6e693b41e32bdaa797fde334dcae03b78cb46eaf"
+  },
+  "server/crash-reports/crash-2026-09-16_14.07.11-server.txt": {
+    "bytes": 14710,
+    "sha256": "278127855d0ca09b7fb297039aaf49d74a327f55bf531e0e984506c6ce9bcacb"
+  },
+  "server/crash-reports/crash-2026-09-16_16.45.42-server.txt": {
+    "bytes": 74031,
+    "sha256": "89d2b6e7aa2fe46ecada4d12f681a4c1abb8df6befe0c10e764133fb7ececea2"
+  },
+  "server/logs/2026-09-16-3.log": {
+    "bytes": 9977,
+    "sha256": "9361ffb39517fe615e5f796bcd566e49c00520c13595c502a5d8c76010c1df7d"
+  },
+  "server/logs/2026-09-16-3.log.gz": {
+    "bytes": 2826,
+    "sha256": "d9eb42fe540c39589c78c21a5f1fe332033bf45e8f63f56d06f078432d719972"
+  },
+  "server/logs/2026-09-16-4.log": {
+    "bytes": 212286,
+    "sha256": "435374837bccc3f8c898e5f81bbbe40148eaf8b7ce5c9188a96fd6d0ac16b2c7"
+  },
+  "server/logs/2026-09-16-4.log.gz": {
+    "bytes": 29833,
+    "sha256": "6fc408b664d7cc79350018c39d740165d4cff177fe8c1cd5b18b340b35fab086"
+  },
+  "server/logs/2026-09-16-5.log": {
+    "bytes": 14460,
+    "sha256": "4ce90888223cfb665363ebf78212699bc58f11c50b58a4feaa2c7be9e7af2751"
+  },
+  "server/logs/2026-09-16-5.log.gz": {
+    "bytes": 3763,
+    "sha256": "aa11a8b516ffa1a6fb3499a79441768654d1b093f8220544943beee59c5dc31d"
+  },
+  "server/logs/2026-09-16-6.log": {
+    "bytes": 47590,
+    "sha256": "156b5be28b68ac906ba82f340f91072da398045aef871889e34ba8c17336c945"
+  },
+  "server/logs/2026-09-16-6.log.gz": {
+    "bytes": 9153,
+    "sha256": "e907769bdb1471369389b9f0e1bd59f438e7c3cb3101d2322b55b8bedfb759d5"
+  },
+  "server/logs/2026-09-16-7.log": {
+    "bytes": 69975,
+    "sha256": "da5b6a4ec960a39251a92836a6ac1966aa0fbebbb4d7986eb2d6713fc4f74f69"
+  },
+  "server/logs/2026-09-16-7.log.gz": {
+    "bytes": 11268,
+    "sha256": "bc76b64bb39178280e97414938dadf6052a062d75497e717adede6421f7f11ad"
+  },
+  "server/logs/latest.log": {
+    "bytes": 14928,
+    "sha256": "64b0a2ddbd8da7ca05e957f846dc5bd59ae69148028750d5008ea481ebb0613e"
+  },
+  "server/mods/c2me-fabric-mc1.21.11-0.4.0-alpha.0.26.jar": {
+    "bytes": 3829586,
+    "sha256": "232a1a25196b7e704abca3f278d3fc4cf4f5f70d56019d4e668a5750fc86c2d6"
+  },
+  "server/mods/warden-1.0.6-pre.5.jar": {
+    "bytes": 1253437,
+    "sha256": "8736d70e8eb27cac78624e1750d033f2c009be29ca27f6506f876dcd4460f41d"
+  },
+  "server/server.properties": {
+    "bytes": 1700,
+    "sha256": "4c274127778ed9023ae368504a30c9aee3d38ef2cc00b3536756e9bbeb0f4f39"
+  }
+}

@@ -1,0 +1,39 @@
+  private static net.minecraft.class_1799 resolveProjectileWeaponStack(net.minecraft.class_1665);
+    Code:
+         0: aload_0
+         1: invokevirtual #1456               // Method net/minecraft/class_1665.method_59958:()Lnet/minecraft/class_1799;
+         4: astore_1
+         5: aload_1
+         6: ifnull        18
+         9: aload_1
+        10: invokevirtual #566                // Method net/minecraft/class_1799.method_7960:()Z
+        13: ifne          18
+        16: aload_1
+        17: areturn
+        18: aload_0
+        19: invokevirtual #1460               // Method net/minecraft/class_1665.method_24921:()Lnet/minecraft/class_1297;
+        22: astore_3
+        23: aload_3
+        24: instanceof    #281                // class net/minecraft/class_1657
+        27: ifeq          66
+        30: aload_3
+        31: checkcast     #281                // class net/minecraft/class_1657
+        34: astore_2
+        35: aload_2
+        36: invokevirtual #1402               // Method net/minecraft/class_1657.method_6047:()Lnet/minecraft/class_1799;
+        39: astore_3
+        40: aload_3
+        41: invokestatic  #1463               // Method isRangedWeaponStack:(Lnet/minecraft/class_1799;)Z
+        44: ifeq          49
+        47: aload_3
+        48: areturn
+        49: aload_2
+        50: invokevirtual #1466               // Method net/minecraft/class_1657.method_6079:()Lnet/minecraft/class_1799;
+        53: astore        4
+        55: aload         4
+        57: invokestatic  #1463               // Method isRangedWeaponStack:(Lnet/minecraft/class_1799;)Z
+        60: ifeq          66
+        63: aload         4
+        65: areturn
+        66: getstatic     #913                // Field net/minecraft/class_1799.field_8037:Lnet/minecraft/class_1799;
+        69: areturn

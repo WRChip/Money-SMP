@@ -1,0 +1,1058 @@
+# ================================================================
+#
+#   ███╗   ███╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗███████╗███╗   ███╗██████╗
+#   ████╗ ████║██╔═══██╗████╗  ██║██╔════╝╚██╗ ██╔╝██╔════╝████╗ ████║██╔══██╗
+#   ██╔████╔██║██║   ██║██╔██╗ ██║█████╗   ╚████╔╝ ███████╗██╔████╔██║██████╔╝
+#   ██║╚██╔╝██║██║   ██║██║╚██╗██║██╔══╝    ╚██╔╝  ╚════██║██║╚██╔╝██║██╔═══╝
+#   ██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████╗   ██║   ███████║██║ ╚═╝ ██║██║
+#   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝
+#
+# ================================================================
+#   MoneySMP  —  Economy & Teams System
+#   Version   :  1.1.1
+#   Author    :  Flame
+#   Platform  :  Skript  |  No additional addons required
+# ================================================================
+#
+#  A fully featured economy and team management system.
+#  Players earn money through kills, can pay each other,
+#  can be fined by admins, and are divided into up to 8
+#  color-coded teams with live tab list coloring powered
+#  by vanilla Minecraft teams.
+#
+# ----------------------------------------------------------------
+#   INSTALLATION
+#   Place this file in:  plugins/Skript/scripts/
+#   Then run:           /skript reload MoneySMP
+# ----------------------------------------------------------------
+#   PERMISSIONS
+#   moneysmp.admin  —  Full access to all admin commands
+#   Op              —  Equivalent to moneysmp.admin
+# ----------------------------------------------------------------
+#   TEAMS  (configured via /moneysmp teamcount)
+#
+#   Slot  Name      Chat Color
+#   ─────────────────────────
+#     1   Red        §c
+#     2   Blue       §9
+#     3   Green      §a
+#     4   Yellow     §e
+#     5   Purple     §5
+#     6   Aqua       §b
+#     7   Orange     §6
+#     8   Pink       §d
+# ================================================================
+
+options:
+    prefix:  &8[&a&lMoneySMP&8]&r
+    ap:      moneysmp.admin
+
+# ================================================================
+#  SECTION 1  SCRIPT LOAD
+# ================================================================
+
+on script load:
+    execute console command "team add msmp_Red"
+    execute console command "team add msmp_Blue"
+    execute console command "team add msmp_Green"
+    execute console command "team add msmp_Yellow"
+    execute console command "team add msmp_Purple"
+    execute console command "team add msmp_Aqua"
+    execute console command "team add msmp_Orange"
+    execute console command "team add msmp_Pink"
+    execute console command "team modify msmp_Red color red"
+    execute console command "team modify msmp_Blue color blue"
+    execute console command "team modify msmp_Green color green"
+    execute console command "team modify msmp_Yellow color yellow"
+    execute console command "team modify msmp_Purple color dark_purple"
+    execute console command "team modify msmp_Aqua color aqua"
+    execute console command "team modify msmp_Orange color gold"
+    execute console command "team modify msmp_Pink color light_purple"
+    execute console command "team modify msmp_Red friendlyFire true"
+    execute console command "team modify msmp_Blue friendlyFire true"
+    execute console command "team modify msmp_Green friendlyFire true"
+    execute console command "team modify msmp_Yellow friendlyFire true"
+    execute console command "team modify msmp_Purple friendlyFire true"
+    execute console command "team modify msmp_Aqua friendlyFire true"
+    execute console command "team modify msmp_Orange friendlyFire true"
+    execute console command "team modify msmp_Pink friendlyFire true"
+    execute console command "team modify msmp_Red nametagVisibility always"
+    execute console command "team modify msmp_Blue nametagVisibility always"
+    execute console command "team modify msmp_Green nametagVisibility always"
+    execute console command "team modify msmp_Yellow nametagVisibility always"
+    execute console command "team modify msmp_Purple nametagVisibility always"
+    execute console command "team modify msmp_Aqua nametagVisibility always"
+    execute console command "team modify msmp_Orange nametagVisibility always"
+    execute console command "team modify msmp_Pink nametagVisibility always"
+    if {msmp::teamcount} is not set:
+        set {msmp::teamcount} to 4
+    if {msmp::txcount} is not set:
+        set {msmp::txcount} to 0
+    loop all players:
+        msmpSyncPlayer(loop-player)
+
+# ================================================================
+#  SECTION 2  ON JOIN
+# ================================================================
+
+on join:
+    set {_uid} to "%uuid of player%"
+    set {_name} to name of player
+    if {msmp::money::%{_uid}%} is not set:
+        set {msmp::money::%{_uid}%} to 100
+    set {msmp::name::%{_uid}%} to {_name}
+    set {msmp::uid::%{_name}%} to {_uid}
+    msmpSyncPlayer(player)
+
+# ================================================================
+#  SECTION 3  ACTION BAR — every second
+# ================================================================
+
+every 1 second:
+    loop all players:
+        set {_uid} to "%uuid of loop-player%"
+        set {_bal} to {msmp::money::%{_uid}%}
+        if {_bal} is not set:
+            set {_bal} to 0
+        set {_team} to {msmp::team::%{_uid}%}
+        set {_tLabel} to "&7No Team"
+        if {_team} is set:
+            set {_tLabel} to "%msmpColor({_team})%%{_team}%"
+        if {msmp::notify::%{_uid}%} is set:
+            subtract 1 from {msmp::notify::timer::%{_uid}%}
+            if {msmp::notify::timer::%{_uid}%} > 0:
+                send action bar {msmp::notify::%{_uid}%} to loop-player
+                stop loop
+            else:
+                delete {msmp::notify::%{_uid}%}
+                delete {msmp::notify::timer::%{_uid}%}
+        send action bar "&a&l$ &e%msmpMoney({_bal})%  &8|  &7Team: %{_tLabel}%" to loop-player
+
+# ================================================================
+#  SECTION 4  KILL REWARD
+#  PvP: attacker +$20, victim -$20
+#  Mobs: zombie/skeleton/spider=$3 | creeper=$5 | witch=$8
+#        enderman=$6 | blaze=$10 | wither skeleton=$12
+#        piglin/hoglin=$5 | phantom=$4 | drowned=$3
+#        everything else=$2
+# ================================================================
+
+on death:
+    if attacker is a player:
+        set {_uid} to "%uuid of attacker%"
+        if {msmp::money::%{_uid}%} is not set:
+            set {msmp::money::%{_uid}%} to 0
+
+        # ── Mob kill — no reward ─────────────────────────────────
+        if victim is not a player:
+            stop
+
+        # ── PvP kill ─────────────────────────────────────────────
+        add 20 to {msmp::money::%{_uid}%}
+        set {_new} to {msmp::money::%{_uid}%}
+        send action bar "&a&l+ $20  &7Kill Reward!  &8|  &a$ &e%msmpMoney({_new})%" to attacker
+        set {msmp::notify::%{_uid}%} to "&a&l+ $20  &7Kill Reward!  &8|  &a$ &e%msmpMoney({_new})%"
+        set {msmp::notify::timer::%{_uid}%} to 6
+        msmpLog("KILL", name of attacker, name of victim, 20, "Kill reward")
+        # — Victim loses $20 —
+        set {_vuid} to "%uuid of victim%"
+        if {msmp::money::%{_vuid}%} is not set:
+            set {msmp::money::%{_vuid}%} to 0
+        subtract 20 from {msmp::money::%{_vuid}%}
+        set {_vnew} to {msmp::money::%{_vuid}%}
+        send action bar "&c&l- $20  &7Killed by &f%name of attacker%&7!  &8|  &a$ &e%msmpMoney({_vnew})%" to victim
+        set {msmp::notify::%{_vuid}%} to "&c&l- $20  &7Killed by &f%name of attacker%&7!  &8|  &a$ &e%msmpMoney({_vnew})%"
+        set {msmp::notify::timer::%{_vuid}%} to 6
+        msmpLog("DEATH", name of victim, name of attacker, 20, "Death penalty")
+
+# ================================================================
+#  SECTION 5  /pay COMMAND
+# ================================================================
+
+command /pay <text> <number>:
+    trigger:
+        set {_name} to arg 1
+        set {_amt} to arg 2
+        if {_amt} <= 0:
+            send "{@prefix} &cAmount must be above 0."
+            stop
+        if {_name} is name of player:
+            send "{@prefix} &cYou cannot pay yourself."
+            stop
+        set {_senderUid} to "%uuid of player%"
+        set {_senderBal} to {msmp::money::%{_senderUid}%}
+        if {_senderBal} is not set:
+            set {_senderBal} to 0
+        if {_senderBal} < {_amt}:
+            send "{@prefix} &cInsufficient funds! &7You have &e$%msmpMoney({_senderBal})%&7."
+            stop
+        set {_targetUid} to {msmp::uid::%{_name}%}
+        if {_targetUid} is not set:
+            loop all players:
+                if name of loop-player is {_name}:
+                    set {_targetUid} to "%uuid of loop-player%"
+                    set {msmp::uid::%{_name}%} to {_targetUid}
+                    set {msmp::name::%{_targetUid}%} to {_name}
+        if {_targetUid} is not set:
+            send "{@prefix} &cPlayer &f%{_name}% &cnot found."
+            stop
+        subtract {_amt} from {msmp::money::%{_senderUid}%}
+        set {_senderNew} to {msmp::money::%{_senderUid}%}
+        if {msmp::money::%{_targetUid}%} is not set:
+            set {msmp::money::%{_targetUid}%} to 0
+        add {_amt} to {msmp::money::%{_targetUid}%}
+        set {_targetNew} to {msmp::money::%{_targetUid}%}
+        msmpLog("PAY", name of player, {_name}, {_amt}, "Player payment")
+        send "{@prefix} &aYou paid &e$%msmpMoney({_amt})% &ato &f%{_name}%&a. Your balance: &e$%msmpMoney({_senderNew})%"
+        loop all players:
+            if name of loop-player is {_name}:
+                set {_tUid} to "%uuid of loop-player%"
+                set {msmp::notify::%{_tUid}%} to "&a&l+ $%msmpMoney({_amt})%  &7from &f%name of player%  &8|  &a$ &e%msmpMoney({_targetNew})%"
+                set {msmp::notify::timer::%{_tUid}%} to 6
+                send "{@prefix} &e%name of player% &apaid you &e$%msmpMoney({_amt})%&a! Balance: &e$%msmpMoney({_targetNew})%" to loop-player
+
+# ================================================================
+#  SECTION 6  MAIN /moneysmp COMMAND
+# ================================================================
+
+command /moneysmp [<text>] [<text>] [<text>] [<text>] [<text>]:
+    trigger:
+
+        set {_isAdmin} to false
+        if player is op:
+            set {_isAdmin} to true
+        if player has permission "{@ap}":
+            set {_isAdmin} to true
+
+        # ── No subcommand — help ──────────────────────────────────
+        if arg 1 is not set:
+            send ""
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            send "  {@prefix} &aCommand List"
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            send "  &f/moneysmp balance &8[player]"
+            send "  &f/moneysmp myteam"
+            send "  &f/moneysmp teams"
+            send "  &f/pay &e<player> <amount>"
+            if {_isAdmin} is true:
+                send ""
+                send "  &7&lAdmin Commands:"
+                send "  &f/moneysmp give &e<player> <amount>"
+                send "  &f/moneysmp take &e<player> <amount>"
+                send "  &f/moneysmp set &e<player> <amount>"
+                send "  &f/moneysmp reset"
+                send "  &f/moneysmp fine &e<player> <amount> <reason>"
+                send "  &f/moneysmp teambal"
+                send "  &f/moneysmp teammax &e<number>"
+                send "  &f/moneysmp teamcount &e<1-8>"
+                send "  &f/moneysmp randomteams"
+                send "  &f/moneysmp team set &e<player> <team>"
+                send "  &f/moneysmp transaction &e<time>  &8(e.g. 1h 30m 7d)"
+                send ""
+                send "  &7&lTeams &8(count: %{msmp::teamcount}%):"
+                send "  &c1 Red  &92 Blue  &a3 Green  &e4 Yellow"
+                send "  &55 Purple  &b6 Aqua  &67 Orange  &d8 Pink"
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            send ""
+            stop
+
+        # ── balance ───────────────────────────────────────────────
+        if arg 1 is "balance":
+            if arg 2 is not set:
+                set {_uid} to "%uuid of player%"
+                set {_bal} to {msmp::money::%{_uid}%}
+                if {_bal} is not set:
+                    set {_bal} to 0
+                send "{@prefix} &7Your balance: &a&l$&e %msmpMoney({_bal})%"
+                stop
+            set {_name} to arg 2
+            set {_uid} to {msmp::uid::%{_name}%}
+            if {_uid} is not set:
+                loop all players:
+                    if name of loop-player is {_name}:
+                        set {_uid} to "%uuid of loop-player%"
+                        set {msmp::uid::%{_name}%} to {_uid}
+                        set {msmp::name::%{_uid}%} to {_name}
+            if {_uid} is not set:
+                send "{@prefix} &cPlayer &f%{_name}% &chas never joined."
+                stop
+            set {_bal} to {msmp::money::%{_uid}%}
+            if {_bal} is not set:
+                set {_bal} to 0
+            send "{@prefix} &e%{_name}%&7's balance: &a&l$&e %msmpMoney({_bal})%"
+            stop
+
+        # ── myteam ────────────────────────────────────────────────
+        if arg 1 is "myteam":
+            set {_uid} to "%uuid of player%"
+            set {_t} to {msmp::team::%{_uid}%}
+            if {_t} is not set:
+                send "{@prefix} &7You are not on a team."
+                stop
+            send "{@prefix} &7Your team: %msmpColor({_t})%&l%{_t}%"
+            stop
+
+        # ── teams ─────────────────────────────────────────────────
+        if arg 1 is "teams":
+            send ""
+            send "{@prefix} &7Active Teams  &8|  &7Count: &f%{msmp::teamcount}%"
+            send ""
+            set {_tc} to {msmp::teamcount}
+            if {_tc} is not set:
+                set {_tc} to 4
+            # Unrolled to avoid loop-value nesting issues
+            set {_allteams::1} to "Red"
+            set {_allteams::2} to "Blue"
+            set {_allteams::3} to "Green"
+            set {_allteams::4} to "Yellow"
+            set {_allteams::5} to "Purple"
+            set {_allteams::6} to "Aqua"
+            set {_allteams::7} to "Orange"
+            set {_allteams::8} to "Pink"
+            set {_ti} to 1
+            while {_ti} <= {_tc}:
+                set {_tName} to {_allteams::%{_ti}%}
+                set {_col} to msmpColor({_tName})
+                set {_members} to ""
+                set {_count} to 0
+                loop all players:
+                    set {_uid} to "%uuid of loop-player%"
+                    if {msmp::team::%{_uid}%} is {_tName}:
+                        add 1 to {_count}
+                        if {_members} is "":
+                            set {_members} to "%{_col}%%name of loop-player%"
+                        else:
+                            set {_members} to "%{_members}%&7, %{_col}%%name of loop-player%"
+                if {_count} > 0:
+                    send "  %{_col}%&l%{_tName}% &8(%{_count}%)  &8»  %{_members}%"
+                else:
+                    send "  %{_col}%&l%{_tName}% &8(0)  &8»  &7Empty"
+                add 1 to {_ti}
+            send ""
+            stop
+
+        # ── give ──────────────────────────────────────────────────
+        if arg 1 is "give":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp give <player> <amount>"
+                stop
+            if arg 3 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp give <player> <amount>"
+                stop
+            set {_name} to arg 2
+            set {_amt} to arg 3 parsed as number
+            if {_amt} is not set:
+                send "{@prefix} &cInvalid amount."
+                stop
+            if {_amt} <= 0:
+                send "{@prefix} &cAmount must be above 0."
+                stop
+            set {_uid} to {msmp::uid::%{_name}%}
+            if {_uid} is not set:
+                loop all players:
+                    if name of loop-player is {_name}:
+                        set {_uid} to "%uuid of loop-player%"
+                        set {msmp::uid::%{_name}%} to {_uid}
+                        set {msmp::name::%{_uid}%} to {_name}
+            if {_uid} is not set:
+                send "{@prefix} &cPlayer &f%{_name}% &cnot found."
+                stop
+            if {msmp::money::%{_uid}%} is not set:
+                set {msmp::money::%{_uid}%} to 0
+            add {_amt} to {msmp::money::%{_uid}%}
+            set {_new} to {msmp::money::%{_uid}%}
+            msmpLog("GIVE", name of player, {_name}, {_amt}, "Admin give")
+            send "{@prefix} &aGave &e$%msmpMoney({_amt})% &ato &f%{_name}%&a. Balance: &e$%msmpMoney({_new})%"
+            loop all players:
+                if name of loop-player is {_name}:
+                    send "{@prefix} &aYou received &e$%msmpMoney({_amt})%&a! Balance: &e$%msmpMoney({_new})%" to loop-player
+            stop
+
+        # ── take ──────────────────────────────────────────────────
+        if arg 1 is "take":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp take <player> <amount>"
+                stop
+            if arg 3 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp take <player> <amount>"
+                stop
+            set {_name} to arg 2
+            set {_amt} to arg 3 parsed as number
+            if {_amt} is not set:
+                send "{@prefix} &cInvalid amount."
+                stop
+            if {_amt} <= 0:
+                send "{@prefix} &cAmount must be above 0."
+                stop
+            set {_uid} to {msmp::uid::%{_name}%}
+            if {_uid} is not set:
+                loop all players:
+                    if name of loop-player is {_name}:
+                        set {_uid} to "%uuid of loop-player%"
+                        set {msmp::uid::%{_name}%} to {_uid}
+                        set {msmp::name::%{_uid}%} to {_name}
+            if {_uid} is not set:
+                send "{@prefix} &cPlayer &f%{_name}% &cnot found."
+                stop
+            if {msmp::money::%{_uid}%} is not set:
+                set {msmp::money::%{_uid}%} to 0
+            subtract {_amt} from {msmp::money::%{_uid}%}
+            set {_new} to {msmp::money::%{_uid}%}
+            msmpLog("TAKE", name of player, {_name}, {_amt}, "Admin take")
+            send "{@prefix} &cTook &e$%msmpMoney({_amt})% &cfrom &f%{_name}%&c. Balance: &e$%msmpMoney({_new})%"
+            loop all players:
+                if name of loop-player is {_name}:
+                    send "{@prefix} &c$%msmpMoney({_amt})% &cdeducted. Balance: &e$%msmpMoney({_new})%" to loop-player
+            stop
+
+        # ── set ───────────────────────────────────────────────────
+        if arg 1 is "set":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp set <player> <amount>"
+                stop
+            if arg 3 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp set <player> <amount>"
+                stop
+            set {_name} to arg 2
+            set {_amt} to arg 3 parsed as number
+            if {_amt} is not set:
+                send "{@prefix} &cInvalid amount."
+                stop
+            if {_amt} < 0:
+                send "{@prefix} &cCannot set negative balance."
+                stop
+            set {_uid} to {msmp::uid::%{_name}%}
+            if {_uid} is not set:
+                loop all players:
+                    if name of loop-player is {_name}:
+                        set {_uid} to "%uuid of loop-player%"
+                        set {msmp::uid::%{_name}%} to {_uid}
+                        set {msmp::name::%{_uid}%} to {_name}
+            if {_uid} is not set:
+                send "{@prefix} &cPlayer &f%{_name}% &cnot found."
+                stop
+            set {msmp::money::%{_uid}%} to {_amt}
+            msmpLog("SET", name of player, {_name}, {_amt}, "Admin set balance")
+            send "{@prefix} &aSet &f%{_name}%&a's balance to &e$%msmpMoney({_amt})%"
+            loop all players:
+                if name of loop-player is {_name}:
+                    send "{@prefix} &7Your balance was set to &e$%msmpMoney({_amt})%" to loop-player
+            stop
+
+        # ── reset ─────────────────────────────────────────────────
+        if arg 1 is "reset":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            set {_count} to 0
+            # Loop all known player names → look up their uid → reset money and team
+            loop {msmp::uid::*}:
+                set {_pname} to loop-index
+                set {_uid} to loop-value
+                set {msmp::money::%{_uid}%} to 100
+                add 1 to {_count}
+                set {_oldTeam} to {msmp::team::%{_uid}%}
+                if {_oldTeam} is set:
+                    delete {msmp::members::%{_oldTeam}%::%{_uid}%}
+                    delete {msmp::team::%{_uid}%}
+            # Clear tab list and MC team for online players
+            loop all players:
+                execute console command "team leave %name of loop-player%"
+                set tab list name of loop-player to "%name of loop-player%"
+            msmpLog("RESET", name of player, "ALL PLAYERS", 100, "Mass balance and teams reset")
+            send ""
+            send "{@prefix} &a&lFull Reset! &7Reset &e%{_count}% &7players (including offline) to &a&l$100 &7and cleared all teams."
+            send ""
+            broadcast "{@prefix} &aAll balances reset to &l$100 &aand all teams have been cleared!"
+            stop
+
+        # ── fine ──────────────────────────────────────────────────
+        if arg 1 is "fine":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp fine <player> <amount> <reason>"
+                stop
+            if arg 3 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp fine <player> <amount> <reason>"
+                stop
+            if arg 4 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp fine <player> <amount> <reason>"
+                stop
+            set {_name} to arg 2
+            set {_amt} to arg 3 parsed as number
+            if {_amt} is not set:
+                send "{@prefix} &cInvalid amount."
+                stop
+            set {_reason} to arg 4
+            if {_amt} <= 0:
+                send "{@prefix} &cFine must be above 0."
+                stop
+            set {_uid} to {msmp::uid::%{_name}%}
+            if {_uid} is not set:
+                loop all players:
+                    if name of loop-player is {_name}:
+                        set {_uid} to "%uuid of loop-player%"
+                        set {msmp::uid::%{_name}%} to {_uid}
+                        set {msmp::name::%{_uid}%} to {_name}
+            if {_uid} is not set:
+                send "{@prefix} &cPlayer &f%{_name}% &cnot found."
+                stop
+            if {msmp::money::%{_uid}%} is not set:
+                set {msmp::money::%{_uid}%} to 0
+            subtract {_amt} from {msmp::money::%{_uid}%}
+            set {_new} to {msmp::money::%{_uid}%}
+            msmpLog("FINE", name of player, {_name}, {_amt}, {_reason})
+            broadcast ""
+            broadcast "{@prefix} &c&l⚠ FINE ISSUED ⚠"
+            broadcast "  &7Player: &f%{_name}%"
+            broadcast "  &7Amount: &c-$%msmpMoney({_amt})%"
+            broadcast "  &7Reason: &f%{_reason}%"
+            broadcast "  &7New Balance: &e$%msmpMoney({_new})%"
+            broadcast ""
+            loop all players:
+                if name of loop-player is {_name}:
+                    set {_puid} to "%uuid of loop-player%"
+                    set {msmp::notify::%{_puid}%} to "&c&l- $%msmpMoney({_amt})%  &7Fine: &f%{_reason}%  &8|  &a$ &e%msmpMoney({_new})%"
+                    set {msmp::notify::timer::%{_puid}%} to 8
+                    send "{@prefix} &c&lYou were fined &e$%msmpMoney({_amt})%&c! Reason: &f%{_reason}%" to loop-player
+            stop
+
+        # ── transaction <time> ────────────────────────────────────
+        if arg 1 is "transaction":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp transaction <time>  &7e.g. &f30m 2h 1d"
+                stop
+            set {_rawTime} to arg 2
+            set {_secs} to msmpParseTime({_rawTime})
+            if {_secs} <= 0:
+                send "{@prefix} &cInvalid time. &7Use: &f30s &7/ &f10m &7/ &f2h &7/ &f1d"
+                stop
+            set {_total} to {msmp::txcount}
+            if {_total} is not set:
+                set {_total} to 0
+            if {_total} <= 0:
+                send "{@prefix} &7No transactions recorded yet."
+                stop
+
+            send ""
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            send "  {@prefix} &aTransaction Log  &8|  &7Last &f%{_rawTime}%"
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            send "  &8Type legend: &aPAY &6KILL &cFINE &bGIVE &4TAKE &5SET &8RESET"
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            set {_found} to 0
+            set {_i} to {_total}
+
+            while {_i} > 0:
+                set {_stamp} to {msmp::tx::%{_i}%::stamp}
+                if {_stamp} is set:
+                    # Calculate how many seconds ago this happened
+                    # difference / 1 second gives a plain number in Skript
+                    set {_diff} to difference between {_stamp} and now
+                    set {_diffSecs} to {_diff} / 1 second
+
+                    if {_diffSecs} <= {_secs}:
+                        set {_type} to {msmp::tx::%{_i}%::type}
+                        set {_from} to {msmp::tx::%{_i}%::from}
+                        set {_to} to {msmp::tx::%{_i}%::to}
+                        set {_txamt} to {msmp::tx::%{_i}%::amount}
+                        set {_note} to {msmp::tx::%{_i}%::note}
+                        set {_ago} to msmpTimeAgo({_diffSecs})
+
+                        # Color by type
+                        set {_typeCol} to "&7"
+                        if {_type} is "PAY":
+                            set {_typeCol} to "&a"
+                        if {_type} is "KILL":
+                            set {_typeCol} to "&6"
+                        if {_type} is "FINE":
+                            set {_typeCol} to "&c"
+                        if {_type} is "GIVE":
+                            set {_typeCol} to "&b"
+                        if {_type} is "TAKE":
+                            set {_typeCol} to "&4"
+                        if {_type} is "SET":
+                            set {_typeCol} to "&5"
+                        if {_type} is "RESET":
+                            set {_typeCol} to "&8"
+
+                        send "  %{_typeCol}%&l[%{_type}%]  &8%{_ago}% ago  &8|  &e$%msmpMoney({_txamt})%"
+                        send "    &7From: &f%{_from}%  &8➜  &7To: &f%{_to}%"
+                        if {_note} is not "":
+                            send "    &7Note: &f%{_note}%"
+                        add 1 to {_found}
+
+                subtract 1 from {_i}
+
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            if {_found} is 0:
+                send "  &7No transactions found in the last &f%{_rawTime}%&7."
+            else:
+                send "  &7Showing &f%{_found}% &7transaction(s) from the last &f%{_rawTime}%"
+            send "&8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            send ""
+            stop
+
+        # ── teambal ───────────────────────────────────────────────
+        if arg 1 is "teambal":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+
+            # Snapshot online players
+            clear {_isonline::*}
+            loop all players:
+                set {_isonline::%name of loop-player%} to true
+
+            set {_tc} to {msmp::teamcount}
+            if {_tc} is not set:
+                set {_tc} to 4
+
+            # Use indexed map to avoid loop-value conflicts
+            set {_allteams::1} to "Red"
+            set {_allteams::2} to "Blue"
+            set {_allteams::3} to "Green"
+            set {_allteams::4} to "Yellow"
+            set {_allteams::5} to "Purple"
+            set {_allteams::6} to "Aqua"
+            set {_allteams::7} to "Orange"
+            set {_allteams::8} to "Pink"
+
+            send ""
+            send "{@prefix} &a&l⚔ Team Balances ⚔"
+            send ""
+
+            # Iterate teams with a while loop — no loop-value collision
+            set {_ti} to 1
+            while {_ti} <= {_tc}:
+                set {_tName} to {_allteams::%{_ti}%}
+                set {_col} to msmpColor({_tName})
+                set {_total} to 0
+                set {_count} to 0
+
+                send "  %{_col}%&l%{_tName}%&8:"
+
+                # Loop the member map — loop-index = uid, loop-value = name
+                loop {msmp::members::%{_tName}%::*}:
+                    set {_uid} to loop-index
+                    set {_pName} to loop-value
+                    set {_pBal} to {msmp::money::%{_uid}%}
+                    if {_pBal} is not set:
+                        set {_pBal} to 0
+                    add {_pBal} to {_total}
+                    add 1 to {_count}
+                    set {_tag} to "&8(offline)"
+                    if {_isonline::%{_pName}%} is true:
+                        set {_tag} to "&a(online)"
+                    send "    %{_col}%%{_pName}% %{_tag}%  &8»  &e$%msmpMoney({_pBal})%"
+
+                if {_count} is 0:
+                    send "    &8No players assigned."
+                else:
+                    send "  &7Total: &a&l$%msmpMoney({_total})%  &8|  &7Members: &f%{_count}%"
+                send ""
+                add 1 to {_ti}
+            stop
+
+        # ── teammax ───────────────────────────────────────────────
+        if arg 1 is "teammax":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp teammax <number>"
+                stop
+            set {_n} to arg 2 parsed as number
+            if {_n} is not set:
+                send "{@prefix} &cInvalid number."
+                stop
+            if {_n} <= 0:
+                send "{@prefix} &cMust be at least 1."
+                stop
+            set {msmp::teammax} to {_n}
+            set {_tc} to {msmp::teamcount}
+            if {_tc} is not set:
+                set {_tc} to 4
+            set {_cap} to {_n} * {_tc}
+            send "{@prefix} &aMax per team: &e&l%{_n}%  &8|  &7Capacity: &f%{_cap}% &8(%{_tc}% teams)"
+            stop
+
+        # ── teamcount ─────────────────────────────────────────────
+        if arg 1 is "teamcount":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is not set:
+                send "{@prefix} &cUsage: &f/moneysmp teamcount <1-8>"
+                stop
+            set {_n} to arg 2 parsed as number
+            if {_n} is not set:
+                send "{@prefix} &cInvalid number."
+                stop
+            if {_n} < 1:
+                send "{@prefix} &cMinimum is &e1&c."
+                stop
+            if {_n} > 8:
+                send "{@prefix} &cMaximum is &e8&c."
+                stop
+            set {msmp::teamcount} to {_n}
+            set {_allteams::1} to "Red"
+            set {_allteams::2} to "Blue"
+            set {_allteams::3} to "Green"
+            set {_allteams::4} to "Yellow"
+            set {_allteams::5} to "Purple"
+            set {_allteams::6} to "Aqua"
+            set {_allteams::7} to "Orange"
+            set {_allteams::8} to "Pink"
+            send ""
+            send "{@prefix} &aTeam count: &e&l%{_n}%&a. Active teams:"
+            set {_ti} to 1
+            while {_ti} <= {_n}:
+                set {_tName} to {_allteams::%{_ti}%}
+                set {_col} to msmpColor({_tName})
+                send "    %{_col}%&l%{_ti}%. %{_tName}%"
+                add 1 to {_ti}
+            send ""
+            stop
+
+        # ── team set ──────────────────────────────────────────────
+        if arg 1 is "team":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if arg 2 is "set":
+                if arg 3 is not set:
+                    send "{@prefix} &cUsage: &f/moneysmp team set <player> <team>"
+                    stop
+                if arg 4 is not set:
+                    send "{@prefix} &cUsage: &f/moneysmp team set <player> <team>"
+                    send "  &7Teams: &cRed &9Blue &aGreen &eYellow &5Purple &bAqua &6Orange &dPink"
+                    stop
+                set {_name} to arg 3
+                set {_newTeam} to arg 4
+                set {_first} to first character of {_newTeam}
+                set {_rest} to {_newTeam} in lowercase
+                set {_rest} to last (length of {_rest} - 1) characters of {_rest}
+                set {_newTeam} to "%{_first} in upper case%%{_rest}%"
+                set {_tc} to {msmp::teamcount}
+                if {_tc} is not set:
+                    set {_tc} to 4
+                set {_allteams::1} to "Red"
+                set {_allteams::2} to "Blue"
+                set {_allteams::3} to "Green"
+                set {_allteams::4} to "Yellow"
+                set {_allteams::5} to "Purple"
+                set {_allteams::6} to "Aqua"
+                set {_allteams::7} to "Orange"
+                set {_allteams::8} to "Pink"
+                set {_validTeam} to false
+                set {_ti} to 1
+                while {_ti} <= {_tc}:
+                    if {_allteams::%{_ti}%} is {_newTeam}:
+                        set {_validTeam} to true
+                    add 1 to {_ti}
+                if {_validTeam} is false:
+                    send "{@prefix} &cInvalid team &f%{_newTeam}%&c. Active teams:"
+                    set {_ti} to 1
+                    while {_ti} <= {_tc}:
+                        set {_col} to msmpColor({_allteams::%{_ti}%})
+                        send "  %{_col}%&l%{_allteams::%{_ti}%}%"
+                        add 1 to {_ti}
+                    stop
+                set {_uid} to {msmp::uid::%{_name}%}
+                if {_uid} is not set:
+                    loop all players:
+                        if name of loop-player is {_name}:
+                            set {_uid} to "%uuid of loop-player%"
+                            set {msmp::uid::%{_name}%} to {_uid}
+                            set {msmp::name::%{_uid}%} to {_name}
+                if {_uid} is not set:
+                    send "{@prefix} &cPlayer &f%{_name}% &cnot found."
+                    stop
+                set {_oldTeam} to {msmp::team::%{_uid}%}
+                if {_oldTeam} is set:
+                    delete {msmp::members::%{_oldTeam}%::%{_uid}%}
+                    loop all players:
+                        if name of loop-player is {_name}:
+                            execute console command "team leave %{_name}%"
+                set {msmp::team::%{_uid}%} to {_newTeam}
+                set {msmp::members::%{_newTeam}%::%{_uid}%} to {_name}
+                loop all players:
+                    if name of loop-player is {_name}:
+                        msmpSyncPlayer(loop-player)
+                        send "{@prefix} &7You have been moved to team %msmpColor({_newTeam})%&l%{_newTeam}%" to loop-player
+                send "{@prefix} &aAssigned &f%{_name}% &ato team %msmpColor({_newTeam})%&l%{_newTeam}%&a."
+                stop
+            send "{@prefix} &cUsage: &f/moneysmp team set <player> <team>"
+            stop
+
+        # ── randomteams ───────────────────────────────────────────
+        if arg 1 is "randomteams":
+            if {_isAdmin} is false:
+                send "{@prefix} &cNo permission."
+                stop
+            if {msmp::teammax} is not set:
+                send "{@prefix} &cRun &f/moneysmp teammax <n> &cfirst."
+                stop
+            set {_max} to {msmp::teammax}
+            set {_tc} to {msmp::teamcount}
+            if {_tc} is not set:
+                set {_tc} to 4
+            set {_online} to size of all players
+            set {_cap} to {_max} * {_tc}
+            if {_online} > {_cap}:
+                send "{@prefix} &cToo many players! Capacity: &f%{_cap}% &8(%{_tc}% x %{_max}%)&7. Online: &f%{_online}%"
+                stop
+            set {_allteams::1} to "Red"
+            set {_allteams::2} to "Blue"
+            set {_allteams::3} to "Green"
+            set {_allteams::4} to "Yellow"
+            set {_allteams::5} to "Purple"
+            set {_allteams::6} to "Aqua"
+            set {_allteams::7} to "Orange"
+            set {_allteams::8} to "Pink"
+            loop all players:
+                execute console command "team leave %name of loop-player%"
+                set {_uid} to "%uuid of loop-player%"
+                delete {msmp::team::%{_uid}%}
+            set {_ti} to 1
+            while {_ti} <= {_tc}:
+                delete {msmp::members::%{_allteams::%{_ti}%}%::*}
+                add 1 to {_ti}
+            clear {_pool::*}
+            loop all players:
+                add "%uuid of loop-player%" to {_pool::*}
+            set {_counts::1} to 0
+            set {_counts::2} to 0
+            set {_counts::3} to 0
+            set {_counts::4} to 0
+            set {_counts::5} to 0
+            set {_counts::6} to 0
+            set {_counts::7} to 0
+            set {_counts::8} to 0
+            while size of {_pool::*} > 0:
+                set {_pick} to a random element out of {_pool::*}
+                remove {_pick} from {_pool::*}
+                set {_pname} to {msmp::name::%{_pick}%}
+                if {_pname} is not set:
+                    loop all players:
+                        if "%uuid of loop-player%" is {_pick}:
+                            set {_pname} to name of loop-player
+                set {_torder::1} to 1
+                set {_torder::2} to 2
+                set {_torder::3} to 3
+                set {_torder::4} to 4
+                set {_torder::5} to 5
+                set {_torder::6} to 6
+                set {_torder::7} to 7
+                set {_torder::8} to 8
+                loop 12 times:
+                    set {_ra} to a random integer between 1 and {_tc}
+                    set {_rb} to a random integer between 1 and {_tc}
+                    set {_tmp} to {_torder::%{_ra}%}
+                    set {_torder::%{_ra}%} to {_torder::%{_rb}%}
+                    set {_torder::%{_rb}%} to {_tmp}
+                set {_assigned} to false
+                set {_ri} to 1
+                while {_ri} <= {_tc}:
+                    set {_ti2} to {_torder::%{_ri}%}
+                    if {_assigned} is false:
+                        if {_counts::%{_ti2}%} < {_max}:
+                            set {_tName} to {_allteams::%{_ti2}%}
+                            set {msmp::team::%{_pick}%} to {_tName}
+                            set {msmp::members::%{_tName}%::%{_pick}%} to {_pname}
+                            add 1 to {_counts::%{_ti2}%}
+                            set {_assigned} to true
+                            execute console command "team join msmp_%{_tName}% %{_pname}%"
+                    add 1 to {_ri}
+            broadcast ""
+            broadcast "{@prefix} &a&l⚔  TEAMS HAVE BEEN RANDOMISED  ⚔"
+            broadcast ""
+            loop all players:
+                msmpSyncPlayer(loop-player)
+                set {_uid} to "%uuid of loop-player%"
+                set {_t} to {msmp::team::%{_uid}%}
+                set {_col} to msmpColor({_t})
+                broadcast "  %{_col}%&l%name of loop-player%  &8»  %{_col}%%{_t}%"
+                send "{@prefix} &7You are on team %{_col}%&l%{_t}%" to loop-player
+            broadcast ""
+            stop
+
+        send "{@prefix} &cUnknown subcommand. Run &f/moneysmp &7for help."
+
+# ================================================================
+#  SECTION 7  SHORTCUTS
+# ================================================================
+
+command /balance [<text>]:
+    trigger:
+        if arg 1 is not set:
+            set {_uid} to "%uuid of player%"
+            set {_bal} to {msmp::money::%{_uid}%}
+            if {_bal} is not set:
+                set {_bal} to 0
+            send "{@prefix} &7Your balance: &a&l$&e %msmpMoney({_bal})%"
+            stop
+        set {_name} to arg 1
+        set {_uid} to {msmp::uid::%{_name}%}
+        if {_uid} is not set:
+            send "{@prefix} &cPlayer &f%{_name}% &chas never joined."
+            stop
+        set {_bal} to {msmp::money::%{_uid}%}
+        if {_bal} is not set:
+            set {_bal} to 0
+        send "{@prefix} &e%{_name}%&7's balance: &a&l$&e %msmpMoney({_bal})%"
+
+command /bal [<text>]:
+    trigger:
+        if arg 1 is not set:
+            set {_uid} to "%uuid of player%"
+            set {_bal} to {msmp::money::%{_uid}%}
+            if {_bal} is not set:
+                set {_bal} to 0
+            send "{@prefix} &7Your balance: &a&l$&e %msmpMoney({_bal})%"
+            stop
+        set {_name} to arg 1
+        set {_uid} to {msmp::uid::%{_name}%}
+        if {_uid} is not set:
+            send "{@prefix} &cPlayer &f%{_name}% &chas never joined."
+            stop
+        set {_bal} to {msmp::money::%{_uid}%}
+        if {_bal} is not set:
+            set {_bal} to 0
+        send "{@prefix} &e%{_name}%&7's balance: &a&l$&e %msmpMoney({_bal})%"
+
+# ================================================================
+#  SECTION 8  FUNCTIONS
+# ================================================================
+
+# Log a transaction
+function msmpLog(type: text, from: text, to: text, amount: number, note: text):
+    if {msmp::txcount} is not set:
+        set {msmp::txcount} to 0
+    add 1 to {msmp::txcount}
+    set {_id} to {msmp::txcount}
+    set {msmp::tx::%{_id}%::stamp} to now
+    set {msmp::tx::%{_id}%::type} to {_type}
+    set {msmp::tx::%{_id}%::from} to {_from}
+    set {msmp::tx::%{_id}%::to} to {_to}
+    set {msmp::tx::%{_id}%::amount} to {_amount}
+    set {msmp::tx::%{_id}%::note} to {_note}
+
+# Parse time string → seconds (30s / 10m / 2h / 1d)
+function msmpParseTime(raw: text) :: number:
+    set {_last} to last character of {_raw}
+    set {_numStr} to first (length of {_raw} - 1) characters of {_raw}
+    set {_num} to {_numStr} parsed as number
+    if {_num} is not set:
+        return -1
+    if {_last} is "s":
+        return {_num}
+    if {_last} is "m":
+        return {_num} * 60
+    if {_last} is "h":
+        return {_num} * 3600
+    if {_last} is "d":
+        return {_num} * 86400
+    return -1
+
+# Truncate number to integer — uses floor() inside string interpolation
+# which Skript supports even when standalone floor() calls don't work
+function msmpInt(n: number) :: number:
+    set {_s} to "%floor({_n})%"
+    set {_result} to {_s} parsed as number
+    if {_result} is not set:
+        return 0
+    return {_result}
+
+# Format seconds into readable time-ago label
+function msmpTimeAgo(secs: number) :: text:
+    set {_total} to msmpInt({_secs})
+
+    if {_total} < 60:
+        return "%{_total}%s"
+
+    if {_total} < 3600:
+        set {_m} to msmpInt({_total} / 60)
+        set {_s} to {_total} - ({_m} * 60)
+        return "%{_m}%m %{_s}%s"
+
+    if {_total} < 86400:
+        set {_h} to msmpInt({_total} / 3600)
+        set {_leftover} to {_total} - ({_h} * 3600)
+        set {_m} to msmpInt({_leftover} / 60)
+        return "%{_h}%h %{_m}%m"
+
+    set {_d} to msmpInt({_total} / 86400)
+    set {_leftover} to {_total} - ({_d} * 86400)
+    set {_h} to msmpInt({_leftover} / 3600)
+    return "%{_d}%d %{_h}%h"
+
+# Format number with commas
+function msmpMoney(n: number) :: text:
+    set {_int} to msmpInt({_n})
+    set {_s} to "%{_int}%"
+    set {_len} to length of {_s}
+    if {_len} <= 3:
+        return {_s}
+    if {_len} <= 6:
+        set {_a} to first ({_len} - 3) characters of {_s}
+        set {_b} to last 3 characters of {_s}
+        return "%{_a}%,%{_b}%"
+    if {_len} <= 9:
+        set {_a} to first ({_len} - 6) characters of {_s}
+        set {_mid} to first ({_len} - 3) characters of {_s}
+        set {_b} to last 3 characters of {_mid}
+        set {_c} to last 3 characters of {_s}
+        return "%{_a}%,%{_b}%,%{_c}%"
+    return {_s}
+
+function msmpSyncPlayer(p: player):
+    set {_uid} to "%uuid of {_p}%"
+    set {_name} to name of {_p}
+    set {_team} to {msmp::team::%{_uid}%}
+    if {_team} is set:
+        execute console command "team join msmp_%{_team}% %{_name}%"
+        set tab list name of {_p} to colored "%msmpColor({_team})%%{_name}%"
+    else:
+        execute console command "team leave %{_name}%"
+        set tab list name of {_p} to "%{_name}%"
+
+# Return color code for a team
+function msmpColor(team: text) :: text:
+    if {_team} is "Red":
+        return "&c"
+    if {_team} is "Blue":
+        return "&9"
+    if {_team} is "Green":
+        return "&a"
+    if {_team} is "Yellow":
+        return "&e"
+    if {_team} is "Purple":
+        return "&5"
+    if {_team} is "Aqua":
+        return "&b"
+    if {_team} is "Orange":
+        return "&6"
+    if {_team} is "Pink":
+        return "&d"
+    return "&7"
+
+# ================================================================
+#  END OF MoneySMP.sk
+# ================================================================

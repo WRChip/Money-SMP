@@ -1,0 +1,50 @@
+{
+  "required": true,
+  "package": "com.warden.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExplosionMixin",
+    "BowItemMixin",
+    "CrossbowItemMixin",
+    "PersistentProjectileEntityMixin",
+    "PlayerEntityMixin",
+    "RangedWeaponProjectileMixin",
+    "TridentItemMixin"
+  ],
+  "server": [
+    "ItemStackMixin",
+    "ItemPickupMixin",
+    "LivingEntityMixin",
+    "LivingEntityMixin_Xp",
+    "VillagerEntityMixin",
+    "CraftingResultSlotMixin",
+    "EnchantmentHelperMixin",
+    "BlockMixin",
+    "ExperienceOrbEntityMixin",
+    "AbstractFurnaceBlockEntityMixin",
+    "ExperienceBottleEntityMixin",
+    "FishingBobberEntityMixin",
+    "AnimalEntityMixin",
+    "NetherPortalBlockMixin",
+    "EndPortalBlockMixin",
+    "ServerPlayerEntityMixin",
+    "EntityTrackerEntryMixin",
+    "MinecraftServerMixin",
+    "StructureTemplateMixin",
+    "LootableInventoryMixin",
+    "ChunkGeneratorMixin",
+    "BlockEntityMixin",
+    "ChunkDataMixin",
+    "ChunkDataBlockEntityDataAccessor",
+    "ScreenHandlerMixin",
+    "ItemEntityMixin",
+    "ItemFrameEntityMixin"
+  ],
+  "client": [
+    "client.UseDurationPropertyMixin",
+    "client.ClientPlayerInteractionManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "chunkguard",
+  "version": "${version}",
+  "name": "ChunkGuard",
+  "description": "Strips item and block entity data big enough to push a packet past the client's frame limit (chunk bans).",
+  "authors": ["Flame"],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.flame.chunkguard.ChunkGuardMod"]
+  },
+  "mixins": ["chunkguard.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11"
+  }
+}

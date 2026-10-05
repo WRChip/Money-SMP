@@ -1,0 +1,73 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "level": 1,
+      "want": 1.5,
+      "launchVel": 1.39,
+      "spun": true,
+      "thrown": false,
+      "keptLevel": true,
+      "ok": true
+    },
+    {
+      "level": 2,
+      "want": 2.25,
+      "launchVel": 2.13,
+      "spun": true,
+      "thrown": false,
+      "keptLevel": true,
+      "ok": true
+    },
+    {
+      "level": 3,
+      "want": 3,
+      "launchVel": 2.88,
+      "spun": true,
+      "thrown": false,
+      "keptLevel": true,
+      "ok": true
+    },
+    {
+      "level": 4,
+      "want": 3.75,
+      "launchVel": 3.63,
+      "spun": true,
+      "thrown": false,
+      "keptLevel": true,
+      "ok": true
+    },
+    {
+      "level": 5,
+      "want": 4.5,
+      "launchVel": 4.38,
+      "spun": true,
+      "thrown": false,
+      "keptLevel": true,
+      "ok": true
+    },
+    {
+      "level": 10,
+      "want": 8.25,
+      "launchVel": 8.12,
+      "spun": true,
+      "thrown": false,
+      "keptLevel": true,
+      "ok": true
+    },
+    {
+      "level": 255,
+      "want": 192,
+      "launchVel": 191.87,
+      "spun": true,
+      "thrown": false,
+      "keptLevel": true,
+      "ok": true
+    },
+    {
+      "level": 10,
+      "check": "swapped back to minecraft:riptide on un-whitelist",
+      "ok": true
+    }
+  ]
+}

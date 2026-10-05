@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "anticrack",
+  "version": "${version}",
+  "name": "AntiCrack",
+  "description": "Scrambles structure placement and loot seeds so they can't be used to crack the world seed.",
+  "authors": ["Flame"],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.flame.anticrack.AntiCrackMod"]
+  },
+  "mixins": ["anticrack.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11"
+  }
+}

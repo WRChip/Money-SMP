@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "dev.flame.anticrack.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "server": [
+    "MinecraftServerMixin",
+    "ChunkGeneratorMixin",
+    "StructureTemplateMixin",
+    "LootableInventoryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

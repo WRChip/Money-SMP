@@ -1,0 +1,89 @@
+{
+  "explosion_limits": {
+    "enabled": true,
+    "sources": {}
+  },
+  "item_limits": {
+    "enabled": true,
+    "check_interval_ticks": 20,
+    "drop_pickup_delay": 60,
+    "delete_overflow_item": false,
+    "items": {
+      "minecraft:totem_of_undying": 0,
+      "minecraft:netherite_chestplate": 0,
+      "minecraft:netherite_leggings": 0,
+      "minecraft:netherite_helmet": 0,
+      "minecraft:netherite_boots": 0,
+      "minecraft:copper_spear": 0,
+      "minecraft:diamond_spear": 0,
+      "minecraft:golden_spear": 0,
+      "minecraft:iron_spear": 0,
+      "minecraft:netherite_spear": 0,
+      "minecraft:stone_spear": 0,
+      "minecraft:wooden_spear": 0,
+      "minecraft:tipped_arrow": 0,
+      "minecraft:experience_bottle": 64,
+      "minecraft:cobweb": 128,
+      "minecraft:golden_apple": 128,
+      "minecraft:mace": 0
+    }
+  },
+  "item_usage": {
+    "enabled": true,
+    "blocked": [
+      "minecraft:ender_pearl"
+    ]
+  },
+  "weapon_limits": {
+    "enabled": true,
+    "items": {}
+  },
+  "enchantment_limits": {
+    "enabled": true,
+    "enchantments": {
+      "minecraft:riptide": 0
+    },
+    "item_overrides": {}
+  },
+  "effect_limits": {
+    "enabled": true,
+    "effects": {}
+  },
+  "xp_limits": {
+    "enabled": true,
+    "sources": {},
+    "overrides": {}
+  },
+  "action_bar": {
+    "item": true,
+    "weapon": true,
+    "enchantment": true,
+    "effect": true,
+    "xp": true,
+    "players": {}
+  },
+  "dimension_limits": {
+    "enabled": true,
+    "blocked": [
+      "minecraft:the_end"
+    ]
+  },
+  "exempt": {
+    "creative": true,
+    "players": []
+  },
+  "anti_seedcrack": {
+    "enabled": true
+  },
+  "chunk_ban": {
+    "enabled": true,
+    "max_item_bytes": 65536,
+    "max_block_entity_bytes": 32768,
+    "max_chunk_block_entity_bytes": 1048576
+  },
+  "bucket_drain": {
+    "enabled": true,
+    "max_drains": 6,
+    "window_ticks": 100
+  }
+}

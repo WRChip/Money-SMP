@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "restore",
+  "version": "${version}",
+  "name": "Restore",
+  "description": "Locks a freshly generated world down until /restore opens it with a countdown and a PvP grace period.",
+  "authors": ["Flame"],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.flame.restore.RestoreMod"]
+  },
+  "mixins": ["restore.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11"
+  }
+}

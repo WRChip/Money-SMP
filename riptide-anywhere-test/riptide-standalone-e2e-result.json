@@ -1,0 +1,89 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "label": "untagged, standing in air",
+      "expect": "none",
+      "got": "none",
+      "spun": false,
+      "hop": 0,
+      "launchVel": 0,
+      "dist": 0,
+      "thrown": false,
+      "ench": "\"minecraft:riptide\": 3",
+      "ok": true
+    },
+    {
+      "label": "untagged, water (vanilla riptide)",
+      "expect": "vanilla",
+      "got": "vanilla",
+      "spun": true,
+      "hop": 0,
+      "launchVel": 0,
+      "dist": 0,
+      "thrown": false,
+      "ench": "\"minecraft:riptide\": 3",
+      "ok": true
+    },
+    {
+      "label": "whitelisted, standing in air",
+      "expect": "ours",
+      "got": "ours",
+      "spun": true,
+      "hop": 1.2,
+      "launchVel": 2.96,
+      "dist": 1.2,
+      "thrown": false,
+      "ench": "\"riptideanywhere:riptide\": 3",
+      "ok": true
+    },
+    {
+      "label": "whitelisted, falling mid-air",
+      "expect": "ours",
+      "got": "ours",
+      "spun": true,
+      "hop": 0,
+      "launchVel": 2.92,
+      "dist": 1.21,
+      "thrown": false,
+      "ench": "\"riptideanywhere:riptide\": 3",
+      "ok": true
+    },
+    {
+      "label": "whitelisted, lava",
+      "expect": "ours",
+      "got": "ours",
+      "spun": true,
+      "hop": 1.2,
+      "launchVel": 2.99,
+      "dist": 1.2,
+      "thrown": false,
+      "ench": "\"riptideanywhere:riptide\": 3",
+      "ok": true
+    },
+    {
+      "label": "whitelisted, water",
+      "expect": "ours",
+      "got": "ours",
+      "spun": true,
+      "hop": 1.2,
+      "launchVel": 3,
+      "dist": 1.2,
+      "thrown": false,
+      "ench": "\"riptideanywhere:riptide\": 3",
+      "ok": true
+    },
+    {
+      "label": "removed from whitelist, air",
+      "expect": "none",
+      "got": "none",
+      "spun": false,
+      "hop": 0,
+      "launchVel": 0,
+      "dist": 0,
+      "thrown": false,
+      "ench": "\"minecraft:riptide\": 3",
+      "ok": true
+    }
+  ]
+}

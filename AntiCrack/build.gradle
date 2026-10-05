@@ -1,0 +1,72 @@
+plugins {
+	id 'fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+// boots a real dedicated server and runs the checks in src/e2e against it
+sourceSets {
+	e2e {
+		compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+		runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+	}
+}
+
+def e2eTask = { Task task, List<String> runArgs ->
+	task.dependsOn e2eClasses, 'generateRemapClasspath'
+	task.classpath = sourceSets.e2e.runtimeClasspath
+	task.mainClass = 'dev.flame.anticrack.E2eLauncher'
+	task.args runArgs
+	task.systemProperty 'fabric.development', 'true'
+	task.systemProperty 'fabric.remapClasspathFile', file('.gradle/loom-cache/remapClasspath.txt').absolutePath
+	task.systemProperty 'fabric.classPathGroups', sourceSets.main.output.files.join(File.pathSeparator)
+	task.doFirst {
+		def runDir = java.nio.file.Files.createTempDirectory(layout.buildDirectory.get().asFile.toPath(), 'e2e-').toFile()
+		task.workingDir runDir
+		new File(runDir, 'eula.txt').text = 'eula=true\n'
+		// a normal world, not flat: FlatChunkGenerator builds its own placement calculator and
+		// never reaches the redirect in ChunkGeneratorMixin
+		new File(runDir, 'server.properties').text = '''server-ip=127.0.0.1
+server-port=0
+online-mode=false
+generate-structures=false
+view-distance=2
+simulation-distance=2
+'''
+	}
+}
+
+tasks.register('e2e', JavaExec) { e2eTask(it, []) }
+// fresh server whose only config is an old warden.json, to check the setting is carried over
+tasks.register('e2eMigrate', JavaExec) { e2eTask(it, ['migrate']) }
+
+check.dependsOn e2e, e2eMigrate

@@ -1,0 +1,68 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "label": "untagged, standing in air",
+      "expect": "none",
+      "got": "none",
+      "launchVel": 0,
+      "dist": 0,
+      "thrown": false,
+      "ok": true
+    },
+    {
+      "label": "untagged, water (vanilla riptide)",
+      "expect": "vanilla",
+      "got": "vanilla",
+      "launchVel": 0,
+      "dist": 0,
+      "thrown": false,
+      "ok": true
+    },
+    {
+      "label": "whitelisted, standing in air",
+      "expect": "ours",
+      "got": "ours",
+      "launchVel": 2.95,
+      "dist": 1.2,
+      "thrown": false,
+      "ok": true
+    },
+    {
+      "label": "whitelisted, falling mid-air",
+      "expect": "ours",
+      "got": "ours",
+      "launchVel": 2.66,
+      "dist": 1.26,
+      "thrown": false,
+      "ok": true
+    },
+    {
+      "label": "whitelisted, lava",
+      "expect": "ours",
+      "got": "ours",
+      "launchVel": 2.99,
+      "dist": 1.2,
+      "thrown": false,
+      "ok": true
+    },
+    {
+      "label": "whitelisted, water (no double launch)",
+      "expect": "vanilla",
+      "got": "vanilla",
+      "launchVel": 0,
+      "dist": 0,
+      "thrown": false,
+      "ok": true
+    },
+    {
+      "label": "removed from whitelist, air",
+      "expect": "none",
+      "got": "none",
+      "launchVel": 0,
+      "dist": 0,
+      "thrown": false,
+      "ok": true
+    }
+  ]
+}

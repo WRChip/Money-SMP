@@ -1,0 +1,29 @@
+gradle.projectsEvaluated {
+    def p = rootProject
+    def backup = new File(p.projectDir.parentFile, 'audit-backup-20260914-210451')
+    def warden = p.projectDir.name == 'Warden'
+    def classes = new File(p.layout.buildDirectory.get().asFile, 'audit-baseline')
+    def compile = p.tasks.register('compileAuditBaseline', JavaCompile) {
+        source = p.fileTree(new File(backup, warden ? 'warden-src/main/java' : 'moneysmp-src/main/java'))
+        if (!warden) source p.fileTree(new File(backup, 'benchmark-src'))
+        classpath = p.sourceSets.main.compileClasspath
+        destinationDirectory = classes
+        options.release = 21
+        options.encoding = 'UTF-8'
+        options.compilerArgs.add('-proc:none')
+    }
+    p.tasks.register('benchmarkBaseline', JavaExec) {
+        dependsOn compile, p.tasks.performanceClasses
+        classpath = p.files(classes, p.sourceSets.performance.output, p.sourceSets.main.output.resourcesDir) +
+                (p.sourceSets.main.runtimeClasspath - p.sourceSets.main.output)
+        if (warden) {
+            mainClass = 'com.warden.PerformanceLauncher'
+            args 'benchmark'
+            systemProperty 'fabric.development', 'true'
+            systemProperty 'fabric.remapClasspathFile', p.file('.gradle/loom-cache/remapClasspath.txt').absolutePath
+            systemProperty 'fabric.classPathGroups', [classes, p.sourceSets.main.output.resourcesDir].join(File.pathSeparator)
+        } else {
+            mainClass = 'dev.flame.moneysmp.BaselineSaveCheck'
+        }
+    }
+}

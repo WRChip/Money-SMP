@@ -1,0 +1,67 @@
+plugins {
+	id 'fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+// boots a real dedicated server on a flat world and runs the checks in src/e2e against it
+sourceSets {
+	e2e {
+		compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+		runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+	}
+}
+
+tasks.register('e2e', JavaExec) {
+	dependsOn e2eClasses, 'generateRemapClasspath'
+	classpath = sourceSets.e2e.runtimeClasspath
+	mainClass = 'dev.flame.moderation.E2eLauncher'
+	systemProperty 'fabric.development', 'true'
+	systemProperty 'fabric.remapClasspathFile', file('.gradle/loom-cache/remapClasspath.txt').absolutePath
+	systemProperty 'fabric.classPathGroups', sourceSets.main.output.files.join(File.pathSeparator)
+	doFirst {
+		def runDir = java.nio.file.Files.createTempDirectory(layout.buildDirectory.get().asFile.toPath(), 'e2e-').toFile()
+		workingDir runDir
+		new File(runDir, 'eula.txt').text = 'eula=true\n'
+		new File(runDir, 'server.properties').text = '''server-ip=127.0.0.1
+server-port=0
+online-mode=false
+level-type=minecraft:flat
+generator-settings={"layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:dirt","height":2},{"block":"minecraft:grass_block","height":1}],"biome":"minecraft:plains"}
+generate-structures=false
+view-distance=2
+simulation-distance=2
+'''
+	}
+}
+
+check.dependsOn e2e

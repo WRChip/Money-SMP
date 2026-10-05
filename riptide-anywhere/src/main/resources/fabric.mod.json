@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "riptideanywhere",
+  "version": "${version}",
+  "name": "Riptide Anywhere",
+  "description": "Riptide tridents work out of water for players tagged riptide",
+  "authors": ["Flame"],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.flame.riptide.Riptide"]
+  },
+  "mixins": ["riptideanywhere.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}

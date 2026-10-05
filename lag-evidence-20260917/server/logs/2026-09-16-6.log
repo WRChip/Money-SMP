@@ -1,0 +1,562 @@
+[16:46:36] [main/INFO]: Loading Minecraft 1.21.11 with Fabric Loader 0.19.5
+[16:46:36] [main/INFO]: Loading 102 mods:
+	- c2me 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-base 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-fixes-chunkio-threading-issues 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-fixes-general-threading-issues 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-fixes-worldgen-threading-issues 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-fixes-worldgen-vanilla-bugs 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-notickvd 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-opts-allocs 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-opts-chunkio 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-opts-dfc 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-opts-math 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-opts-scheduling 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-opts-worldgen-general 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-opts-worldgen-vanilla 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-rewrites-chunk-serializer 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-rewrites-chunk-system 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-rewrites-chunkio 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-server-utils 0.4.0-alpha.0.26+1.21.11
+	   |-- c2me-threading-lighting 0.4.0-alpha.0.26+1.21.11
+	   |-- com_electronwill_night-config_core 3.6.5
+	   |-- com_electronwill_night-config_toml 3.6.5
+	   |-- com_github_ben-manes_caffeine_caffeine 3.2.1
+	   |-- com_ibm_async_asyncutil 0.1.0
+	   |-- io_reactivex_rxjava3_rxjava 3.1.12
+	   |-- mixinsquared 0.3.7-beta.1
+	   |-- net_objecthunter_exp4j 0.4.8
+	   |-- org_jctools_jctools-core 4.0.5
+	   \-- org_reactivestreams_reactive-streams 1.0.4
+	- carpet 1.4.194+v251223
+	- chunky 1.4.55
+	- enhancedgroups 1.21.11-1.7.1
+	   |-- admiral 0.4.10+1.21.10
+	   |-- fabric-api-base 1.0.5+4ebb5c0853
+	   \-- fabric-lifecycle-events-v1 2.6.15+4ebb5c0853
+	- fabric-api 0.141.6+1.21.11
+	   |-- fabric-api-lookup-api-v1 1.6.114+20dc27073e
+	   |-- fabric-biome-api-v1 17.1.1+4fc5413f3e
+	   |-- fabric-block-api-v1 1.1.10+4ebb5c083e
+	   |-- fabric-block-view-api-v2 1.0.39+4ebb5c083e
+	   |-- fabric-command-api-v2 2.4.7+6b42a6003e
+	   |-- fabric-content-registries-v0 10.2.14+4fc5413f3e
+	   |-- fabric-convention-tags-v1 2.1.55+7f945d5b3e
+	   |-- fabric-convention-tags-v2 2.17.3+8ef948ba3e
+	   |-- fabric-crash-report-info-v1 0.3.23+4ebb5c083e
+	   |-- fabric-data-attachment-api-v1 1.8.48+eed0806f3e
+	   |-- fabric-data-generation-api-v1 23.5.0+88d7da613e
+	   |-- fabric-dimensions-v1 4.0.28+4fc5413f3e
+	   |-- fabric-entity-events-v1 3.1.1+1d0ab4303e
+	   |-- fabric-events-interaction-v0 4.1.1+3b89ecf63e
+	   |-- fabric-game-rule-api-v1 2.0.3+4fc5413f3e
+	   |-- fabric-item-api-v1 11.6.0+67f17bb43e
+	   |-- fabric-item-group-api-v1 4.2.36+4fc5413f3e
+	   |-- fabric-loot-api-v2 3.0.73+3f89f5a53e
+	   |-- fabric-loot-api-v3 2.0.20+78c8b4663e
+	   |-- fabric-message-api-v1 6.1.12+4ebb5c083e
+	   |-- fabric-networking-api-v1 5.1.6+6b6d71a53e
+	   |-- fabric-object-builder-api-v1 21.1.40+4fc5413f3e
+	   |-- fabric-particles-v1 4.2.12+4fc5413f3e
+	   |-- fabric-recipe-api-v1 8.2.4+4ebb5c083e
+	   |-- fabric-registry-sync-v0 6.2.6+1718722b3e
+	   |-- fabric-rendering-fluids-v1 3.1.43+4ebb5c083e
+	   |-- fabric-resource-conditions-api-v1 5.0.35+4fc5413f3e
+	   |-- fabric-resource-loader-v0 3.3.4+4fc5413f3e
+	   |-- fabric-resource-loader-v1 1.0.10+78c8b4663e
+	   |-- fabric-screen-handler-api-v1 1.3.162+4fc5413f3e
+	   |-- fabric-serialization-api-v1 1.0.5+4ebb5c083e
+	   |-- fabric-tag-api-v1 1.3.0+88d7da613e
+	   |-- fabric-transfer-api-v1 6.0.25+4fc5413f3e
+	   \-- fabric-transitive-access-wideners-v1 7.1.0+014c8cec3e
+	- fabricloader 0.19.5
+	   \-- mixinextras 0.5.5
+	- ferritecore 8.2.0
+	- java 21
+	- lithium 0.21.4+mc1.21.11
+	- minecraft 1.21.11
+	- moneysmp 1.1.5
+	   \-- fabric-permissions-api-v0 0.6.1
+	- nochatreports 1.21.11-v2.18.0
+	- scalablelux 0.1.6+fabric.c25518a
+	- spark 1.10.170
+	   \-- fabric-permissions-api-v0 0.6.1
+	- vanish 1.6.15+1.21.11
+	   |-- com_typesafe_config 1.4.1
+	   |-- fabric-permissions-api-v0 0.6.1
+	   |-- io_leangen_geantyref_geantyref 1.3.11
+	   |-- org_spongepowered_configurate-core 4.1.2
+	   |-- org_spongepowered_configurate-hocon 4.1.2
+	   |-- placeholder-api 2.8.1+1.21.10
+	   |-- player-data-api 0.9.0+1.21.9
+	   \-- server_translations_api 2.5.2+1.21.9-pre3
+	        \-- packet_tweaker 0.6.0-pre.1+1.21.2-pre3
+	- vmp 0.2.0+beta.7.227+1.21.11
+	- voicechat 1.21.11-2.6.23
+	   |-- fabric-api-base 1.0.5+4ebb5c0853
+	   |-- fabric-lifecycle-events-v1 2.6.15+4ebb5c0853
+	   \-- voicechat_api 2.6.20
+	- warden 1.0.6-pre.4
+	   \-- yet_another_config_lib_v3 3.8.2+1.21.11-fabric
+	        |-- com_twelvemonkeys_common_common-image 3.12.0
+	        |-- com_twelvemonkeys_common_common-io 3.12.0
+	        |-- com_twelvemonkeys_common_common-lang 3.12.0
+	        |-- com_twelvemonkeys_imageio_imageio-core 3.12.0
+	        |-- com_twelvemonkeys_imageio_imageio-metadata 3.12.0
+	        |-- com_twelvemonkeys_imageio_imageio-webp 3.12.0
+	        |-- org_quiltmc_parsers_gson 0.2.1
+	        \-- org_quiltmc_parsers_json 0.2.1
+[16:46:36] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/container/libraries/net/fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.base.mixin
+[16:46:36] [main/INFO]: Global Executor Parallelism: 3 configured, 3 evaluated, 3 default evaluated
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.fixes.chunkio.threading_issues.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.fixes.general.threading_issues.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.fixes.worldgen.threading_issues.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.fixes.worldgen.vanilla_bugs.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.notickvd.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.opts.allocs.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.opts.chunkio.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.opts.dfc.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.opts.math.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.opts.scheduling.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.opts.worldgen.general.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.opts.worldgen.vanilla.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.rewrites.chunk_serializer.mixin
+[16:46:36] [main/INFO]: Disabling com.ishland.c2me.rewrites.chunk_serializer.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.rewrites.chunksystem.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.rewrites.chunkio.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.server.utils.mixin
+[16:46:36] [main/INFO]: Initializing com.ishland.c2me.threading.lighting.mixin
+[16:46:36] [main/INFO]: Loaded configuration file for Lithium: 171 options available, 0 override(s) found.
+[16:46:36] [main/WARN]: Reference map 'nochatreports.refmap.json' for mixins/common/nochatreports.mixins.json could not be read. If this is a development environment you can ignore this message
+[16:46:36] [main/INFO]: Successfully started async appender with [SysOut, ServerGuiConsole, Tracy, File]
+[16:46:36] [main/WARN]: Reference map 'yet_another_config_lib_v3.refmap.json' for yacl.mixins.json could not be read. If this is a development environment you can ignore this message
+[16:46:36] [main/WARN]: Reference map 'yet_another_config_lib_v3.refmap.json' for yacl-fabric.mixins.json could not be read. If this is a development environment you can ignore this message
+[16:46:36] [main/WARN]: Error loading class: ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks (java.lang.ClassNotFoundException: ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks)
+[16:46:36] [main/WARN]: @Mixin target ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks was not found c2me-rewrites-chunk-system.mixins.json:scalablelux.MixinChunkSystemHooks from mod c2me-rewrites-chunk-system
+[16:46:36] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[16:46:39] [main/ERROR]: Failed to load persistent groups
+[16:46:39] [main/ERROR]: Failed to load auto join groups
+[16:46:39] [main/INFO]: Loading vanish configuration...
+[16:46:39] [main/INFO]: [voicechat] Compatibility version 20
+[16:46:39] [main/INFO]: [voicechat] Loading plugins
+[16:46:39] [main/INFO]: [voicechat] Loaded 1 plugin(s)
+[16:46:39] [main/INFO]: [voicechat] Initializing plugins
+[16:46:39] [main/INFO]: [voicechat] Initialized 1 plugin(s)
+[16:46:39] [main/INFO]: [voicechat] Registering events for 'enhancedgroups'
+[16:46:39] [main/INFO]: [voicechat] Enabling vanish compatibility
+[16:46:39] [main/INFO]: [Warden] Loaded config from ./config/warden.json
+[16:46:39] [main/INFO]: [Warden] Loaded. Explosion: true, Items: true, Weapons: true, Enchantments: true, Effects: true
+[16:46:39] [main/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[16:46:40] [main/WARN]: Missing data pack antixray
+[16:46:40] [main/INFO]: Loaded 1472 recipes
+[16:46:41] [main/INFO]: Loaded 1585 advancements
+[16:46:41] [ForkJoinPool.commonPool-worker-1/INFO]: Loaded 10 translation keys
+[16:46:41] [main/INFO]: Applied 0 biome modifications to 0 of 65 new biomes in 790.4 μs
+[16:46:41] [Server thread/INFO]: Starting background profiler...
+[16:46:41] [Server thread/INFO]: Starting minecraft server version 1.21.11
+[16:46:41] [Server thread/INFO]: Loading properties
+[16:46:41] [Server thread/INFO]: Default game type: SURVIVAL
+[16:46:41] [Server thread/INFO]: Generating keypair
+[16:46:41] [Server thread/INFO]: Starting Minecraft server on 0.0.0.0:20025
+[16:46:41] [Server thread/INFO]: Preparing level "world"
+[16:46:41] [Server thread/INFO]: Enforcing safe world random access
+[16:46:41] [Server thread/INFO]: [STDOUT]: Density function compilation finished in 167.6 ms
+[16:46:41] [Server thread/INFO]: Changing watch distance to 10
+[16:46:41] [Server thread/INFO]: Using TheSpeedyObjectFactory with Unsafe
+[16:46:42] [Server thread/INFO]: [STDOUT]: Density function compilation finished in 4.987 ms
+[16:46:42] [Server thread/INFO]: Changing watch distance to 10
+[16:46:42] [Server thread/INFO]: [STDOUT]: Density function compilation finished in 3.270 ms
+[16:46:42] [Server thread/INFO]: Changing watch distance to 10
+[16:46:42] [Server thread/INFO]: Loading 0 persistent chunks...
+[16:46:42] [Server thread/INFO]: Preparing spawn area: 100%
+[16:46:42] [Server thread/INFO]: Time elapsed: 2 ms
+[16:46:42] [Server thread/INFO]: Done (0.752s)! For help, type "help"
+[16:46:42] [Server thread/INFO]: Starting GS4 status listener
+[16:46:42] [Server thread/INFO]: Thread Query Listener started
+[16:46:42] [Query Listener #1/INFO]: Query running on 0.0.0.0:25565
+[16:46:42] [Server thread/INFO]: Added 0 persistent groups
+[16:46:42] [VoiceChatServerThread/INFO]: [voicechat] Using server-ip as bind address: 0.0.0.0
+[16:46:42] [VoiceChatServerThread/INFO]: [voicechat] Voice chat server started at 0.0.0.0:20025
+[16:46:42] [Server thread/INFO]: [STDOUT]: [ScalableLux] Lighting scaling is enabled in externally managed mode
+[16:46:42] [User Authenticator #1/INFO]: UUID of player Paikia is 23a1558e-db57-46f7-bf89-4ae4a2af1172
+[16:46:43] [Server thread/INFO]: Paikia[/92.223.85.221:55613] logged in with entity id 1 at (2574.6214170735757, 87.41999998688698, 3941.1021988599955)
+[16:46:43] [Server thread/INFO]: Using Fabric Permissions API
+[16:46:43] [Server thread/INFO]: [voicechat] Using Fabric Permissions API
+[16:46:43] [Server thread/INFO]: [S] Paikia joined the game
+[16:46:44] [Server thread/INFO]: [voicechat] Received secret request of Paikia (20)
+[16:46:44] [Server thread/INFO]: [voicechat] Sent secret to Paikia
+[16:46:44] [User Authenticator #2/INFO]: UUID of player ItsDustiyn is 316dd54d-62df-4c29-9146-4a7af6a38d3f
+[16:46:45] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 23a1558e-db57-46f7-bf89-4ae4a2af1172
+[16:46:46] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 23a1558e-db57-46f7-bf89-4ae4a2af1172
+[16:46:46] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player Paikia (23a1558e-db57-46f7-bf89-4ae4a2af1172) successfully connected to voice chat
+[16:46:46] [Server thread/INFO]: ItsDustiyn[/152.233.15.205:34443] logged in with entity id 46 at (1301.0968740124442, 64.73761455749664, 808.4694409114072)
+[16:46:46] [Server thread/INFO]: ItsDustiyn joined the game
+[16:46:46] [Server thread/INFO]: [voicechat] Received secret request of ItsDustiyn (20)
+[16:46:46] [Server thread/INFO]: [voicechat] Sent secret to ItsDustiyn
+[16:46:46] [Server thread/INFO]: Player ItsDustiyn joined with a matching carpet client
+[16:46:47] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 316dd54d-62df-4c29-9146-4a7af6a38d3f
+[16:46:48] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 316dd54d-62df-4c29-9146-4a7af6a38d3f
+[16:46:48] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player ItsDustiyn (316dd54d-62df-4c29-9146-4a7af6a38d3f) successfully connected to voice chat
+[16:46:50] [Server thread/INFO]: [ItsDustiyn: ItsDustiyn subscribed to tps.]
+[16:46:55] [User Authenticator #3/INFO]: UUID of player celicocat is f9f7d06a-e030-4c4f-8f68-9ff4770a83ad
+[16:46:55] [Server thread/INFO]: celicocat[/103.129.23.211:21305] logged in with entity id 452 at (-3653.3399370306965, -21.0, 4938.609939435614)
+[16:46:55] [Server thread/INFO]: [A] celicocat joined the game
+[16:46:56] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to -2399.500000, 98.183088, 2400.500000]
+[16:46:57] [User Authenticator #4/INFO]: UUID of player lyumz is ba9f0399-4db5-44d7-b5f9-731f184b175f
+[16:46:57] [Server thread/INFO]: lyumz[/182.253.14.93:55830] logged in with entity id 577 at (-3599.699999988079, 75.0, 4930.473881683692)
+[16:46:57] [Server thread/INFO]: [C] lyumz joined the game
+[16:46:57] [Server thread/INFO]: [voicechat] Received secret request of lyumz (20)
+[16:46:57] [Server thread/INFO]: [voicechat] Sent secret to lyumz
+[16:46:57] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player ba9f0399-4db5-44d7-b5f9-731f184b175f
+[16:46:58] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player ba9f0399-4db5-44d7-b5f9-731f184b175f
+[16:46:58] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player lyumz (ba9f0399-4db5-44d7-b5f9-731f184b175f) successfully connected to voice chat
+[16:47:06] [User Authenticator #5/INFO]: UUID of player Cyrillll is 4e985f97-4eea-4472-9f3b-90ecdcdc1d8b
+[16:47:07] [Server thread/INFO]: Cyrillll[/203.175.163.202:40317] logged in with entity id 636 at (-3651.7573580973303, -22.0, 4932.944765340426)
+[16:47:07] [Server thread/INFO]: [B] Cyrillll joined the game
+[16:47:07] [User Authenticator #6/INFO]: UUID of player KSchlam is a05b9723-d192-41ad-8c78-a9bfe4d68d77
+[16:47:07] [Server thread/INFO]: [voicechat] Received secret request of Cyrillll (20)
+[16:47:07] [Server thread/INFO]: [voicechat] Sent secret to Cyrillll
+[16:47:07] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 4e985f97-4eea-4472-9f3b-90ecdcdc1d8b
+[16:47:07] [Server thread/INFO]: KSchlam[/103.6.151.192:41921] logged in with entity id 651 at (2246.147594716471, 52.86333192482107, 3717.300000011921)
+[16:47:07] [Server thread/INFO]: [C] KSchlam joined the game
+[16:47:07] [Server thread/INFO]: [voicechat] Received secret request of KSchlam (20)
+[16:47:07] [Server thread/INFO]: [voicechat] Sent secret to KSchlam
+[16:47:07] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player a05b9723-d192-41ad-8c78-a9bfe4d68d77
+[16:47:08] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 4e985f97-4eea-4472-9f3b-90ecdcdc1d8b
+[16:47:08] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player Cyrillll (4e985f97-4eea-4472-9f3b-90ecdcdc1d8b) successfully connected to voice chat
+[16:47:08] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player a05b9723-d192-41ad-8c78-a9bfe4d68d77
+[16:47:08] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player KSchlam (a05b9723-d192-41ad-8c78-a9bfe4d68d77) successfully connected to voice chat
+[16:47:24] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[16:47:42] [User Authenticator #7/INFO]: UUID of player Centrifugal28 is 57b3a1b9-6000-495f-bdce-85eb71f5a425
+[16:47:42] [Server thread/INFO]: Centrifugal28[/203.175.163.210:21729] logged in with entity id 1258 at (-2900.926270552082, -32.0, -1116.1152836144258)
+[16:47:42] [Server thread/INFO]: [B] Centrifugal28 joined the game
+[16:47:42] [Server thread/INFO]: [voicechat] Received secret request of Centrifugal28 (20)
+[16:47:42] [Server thread/INFO]: [voicechat] Sent secret to Centrifugal28
+[16:47:42] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 57b3a1b9-6000-495f-bdce-85eb71f5a425
+[16:47:43] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 57b3a1b9-6000-495f-bdce-85eb71f5a425
+[16:47:43] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player Centrifugal28 (57b3a1b9-6000-495f-bdce-85eb71f5a425) successfully connected to voice chat
+[16:48:16] [User Authenticator #8/INFO]: UUID of player Aethnith is 051587d0-a1cd-4b4f-905f-414c877560eb
+[16:48:16] [Server thread/INFO]: Aethnith[/136.158.58.128:32386] logged in with entity id 2135 at (1193.699999988079, 63.0, 1042.300000011921)
+[16:48:16] [Server thread/INFO]: [A] Aethnith joined the game
+[16:48:16] [Server thread/INFO]: [voicechat] Received secret request of Aethnith (20)
+[16:48:16] [Server thread/INFO]: [voicechat] Sent secret to Aethnith
+[16:48:16] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 051587d0-a1cd-4b4f-905f-414c877560eb
+[16:48:17] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 051587d0-a1cd-4b4f-905f-414c877560eb
+[16:48:17] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player Aethnith (051587d0-a1cd-4b4f-905f-414c877560eb) successfully connected to voice chat
+[16:48:18] [Server thread/INFO]: <[S] Paikia> dustin when done join back
+[16:48:23] [Server thread/INFO]: Rxnzo (/49.144.128.57:15317) lost connection: Disconnected
+[16:48:24] [User Authenticator #9/INFO]: UUID of player Rxnzo is 2ead0bcf-e0ae-4392-8a3d-69bc2200e757
+[16:48:25] [Server thread/INFO]: Rxnzo[/49.144.128.57:15326] logged in with entity id 2507 at (2190.8544403283645, -4.0, 1043.5158773916276)
+[16:48:25] [Server thread/INFO]: [B] Rxnzo joined the game
+[16:48:26] [Server thread/INFO]: [voicechat] Received secret request of Rxnzo (20)
+[16:48:26] [Server thread/INFO]: [voicechat] Sent secret to Rxnzo
+[16:48:26] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 2ead0bcf-e0ae-4392-8a3d-69bc2200e757
+[16:48:27] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 2ead0bcf-e0ae-4392-8a3d-69bc2200e757
+[16:48:27] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player Rxnzo (2ead0bcf-e0ae-4392-8a3d-69bc2200e757) successfully connected to voice chat
+[16:48:49] [Server thread/INFO]: <[B] Centrifugal28> yo 5tr crafted the mace ban him
+[16:48:51] [Server thread/INFO]: <ItsDustiyn> gg
+[16:48:58] [User Authenticator #10/INFO]: UUID of player 5tr__ is e3513a51-8db5-4c38-8203-055c0f0bc681
+[16:48:59] [Server thread/INFO]: 5tr__[/27.54.171.89:60034] logged in with entity id 3248 at (1008.5909186093537, -51.0, 128.35400516609255)
+[16:48:59] [Server thread/INFO]: [C] 5tr__ joined the game
+[16:48:59] [User Authenticator #11/INFO]: UUID of player crischutu07 is 7cbf0707-0387-4e74-b52a-55fbe4701425
+[16:48:59] [Server thread/INFO]: [voicechat] Received secret request of 5tr__ (20)
+[16:48:59] [Server thread/INFO]: [voicechat] Sent secret to 5tr__
+[16:49:00] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player e3513a51-8db5-4c38-8203-055c0f0bc681
+[16:49:01] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player e3513a51-8db5-4c38-8203-055c0f0bc681
+[16:49:01] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player 5tr__ (e3513a51-8db5-4c38-8203-055c0f0bc681) successfully connected to voice chat
+[16:49:02] [Server thread/INFO]: crischutu07[/42.116.99.139:20345] logged in with entity id 3403 at (-2914.4317890102907, -32.0, -1113.129765373133)
+[16:49:02] [Server thread/INFO]: [F] crischutu07 joined the game
+[16:49:03] [Server thread/INFO]: [voicechat] Received secret request of crischutu07 (20)
+[16:49:03] [Server thread/INFO]: [voicechat] Sent secret to crischutu07
+[16:49:04] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 7cbf0707-0387-4e74-b52a-55fbe4701425
+[16:49:05] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 7cbf0707-0387-4e74-b52a-55fbe4701425
+[16:49:05] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player crischutu07 (7cbf0707-0387-4e74-b52a-55fbe4701425) successfully connected to voice chat
+[16:49:08] [Server thread/INFO]: <[C] 5tr__> YO WHERE AM I
+[16:49:15] [Server thread/INFO]: [ItsDustiyn: Teleported [B] Cyrillll to ItsDustiyn]
+[16:49:28] [Server thread/INFO]: [ItsDustiyn: Teleported [C] lyumz to ItsDustiyn]
+[16:49:31] [Server thread/INFO]: [ItsDustiyn: Teleported [A] celicocat to ItsDustiyn]
+[16:50:23] [Server thread/INFO]: [F] crischutu07 has made the advancement [Hot Stuff]
+[16:50:32] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[16:50:33] [User Authenticator #12/INFO]: UUID of player enzoxz_ is 0f7149d5-69b1-4f6d-a3f5-88d636e93a52
+[16:50:35] [Server thread/INFO]: enzoxz_[/103.144.157.133:15747] logged in with entity id 5135 at (1179.300000011921, -40.0, -936.2383145937863)
+[16:50:35] [Server thread/INFO]: [B] enzoxz_ joined the game
+[16:50:35] [Server thread/INFO]: [voicechat] Received secret request of enzoxz_ (20)
+[16:50:35] [Server thread/INFO]: [voicechat] Sent secret to enzoxz_
+[16:50:35] [Server thread/INFO]: Player enzoxz_ joined with a matching carpet client
+[16:50:35] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 0f7149d5-69b1-4f6d-a3f5-88d636e93a52
+[16:50:36] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 0f7149d5-69b1-4f6d-a3f5-88d636e93a52
+[16:50:36] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player enzoxz_ (0f7149d5-69b1-4f6d-a3f5-88d636e93a52) successfully connected to voice chat
+[16:50:37] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[16:51:00] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[16:51:11] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to [F] crischutu07]
+[16:51:28] [Server thread/INFO]: <[B] enzoxz_> aw it rerolled
+[16:51:30] [Server thread/INFO]: <[A] Aethnith> are string dupers allowed
+[16:52:11] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[16:52:50] [Server thread/INFO]: [C] lyumz has made the advancement [A Seedy Place]
+[16:53:11] [Server thread/INFO]: ItsDustiyn has made the advancement [Getting an Upgrade]
+[16:53:47] [Server thread/INFO]: Villager class_1646['Villager'/1245, l='ServerLevel[world]', x=-2913.53, y=-31.81, z=-1115.43] died, message: 'Villager was slain by ItsDustiyn'
+[16:53:49] [Server thread/INFO]: Villager class_1646['Villager'/1244, l='ServerLevel[world]', x=-2913.51, y=-31.81, z=-1116.03] died, message: 'Villager was slain by ItsDustiyn'
+[16:53:54] [Server thread/INFO]: Villager class_1646['Fletcher'/1247, l='ServerLevel[world]', x=-2918.52, y=-12.64, z=-1112.70] died, message: 'Fletcher was slain by ItsDustiyn'
+[16:53:56] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[16:54:05] [Server thread/INFO]: <[B] Centrifugal28> w dustin killed all of my villagers im crine
+[16:54:19] [User Authenticator #13/INFO]: UUID of player C1rclee is 9180740b-6fe6-44ee-8c25-ac3ef65f8df2
+[16:54:20] [Server thread/INFO]: C1rclee[/14.198.204.196:52671] logged in with entity id 10549 at (4115.774328022213, 70.25220334025373, -4294.348255584176)
+[16:54:20] [Server thread/INFO]: [S] C1rclee joined the game
+[16:54:20] [Server thread/INFO]: [voicechat] Received secret request of C1rclee (20)
+[16:54:20] [Server thread/INFO]: [voicechat] Sent secret to C1rclee
+[16:54:20] [Server thread/INFO]: Player C1rclee joined with a matching carpet client
+[16:54:20] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 9180740b-6fe6-44ee-8c25-ac3ef65f8df2
+[16:54:21] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 9180740b-6fe6-44ee-8c25-ac3ef65f8df2
+[16:54:21] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player C1rclee (9180740b-6fe6-44ee-8c25-ac3ef65f8df2) successfully connected to voice chat
+[16:54:29] [Server thread/INFO]: [B] Cyrillll has made the advancement [A Seedy Place]
+[16:54:41] [Server thread/INFO]: <[C] 5tr__> why are we farming bro
+[16:54:43] [Server thread/INFO]: <[C] 5tr__> nvm
+[16:54:45] [Server thread/INFO]: <[C] 5tr__> nether wart
+[16:54:51] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[16:54:52] [Server thread/INFO]: <[S] C1rclee> wheres celicocat
+[16:55:12] [Server thread/INFO]: <[B] Cyrillll> hes dead
+[16:55:14] [Server thread/INFO]: <[B] Cyrillll> i killed him
+[16:55:28] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[16:55:30] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[16:55:36] [Server thread/INFO]: * [C] lyumz has been slain by Cyrillll
+[16:55:41] [Server thread/INFO]: <ItsDustiyn> gg
+[16:55:43] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[16:55:46] [Server thread/INFO]: <[C] 5tr__> imagine dying to cyril bro
+[16:55:47] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[16:55:49] [Server thread/INFO]: <[B] Cyrillll> skill issue lol
+[16:55:53] [Server thread/INFO]: <[S] C1rclee> HI CELICOCAT
+[16:55:54] [Server thread/INFO]: <[S] C1rclee> HI CELICOCAT
+[16:55:54] [Server thread/INFO]: <[S] C1rclee> HI CELICOCAT
+[16:55:59] [Server thread/INFO]: [ItsDustiyn: Teleported [F] crischutu07 to ItsDustiyn]
+[16:56:02] [Server thread/INFO]: [ItsDustiyn: Teleported [B] Centrifugal28 to ItsDustiyn]
+[16:56:12] [Server thread/INFO]: [B] Centrifugal28 fell from a high place
+[16:56:19] [Server thread/INFO]: <[B] Centrifugal28> w dustin
+[16:56:21] [Server thread/INFO]: [ItsDustiyn: Teleported [B] Centrifugal28 to ItsDustiyn]
+[16:57:47] [Server thread/INFO]: Villager class_1646['Villager'/15561, l='ServerLevel[world]', x=-1991.67, y=-23.44, z=-1328.70] died, message: 'Villager was slain by ItsDustiyn'
+[16:58:16] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[16:58:21] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[16:58:37] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[16:58:57] [Server thread/INFO]: [B] enzoxz_ has made the advancement [Local Brewery]
+[16:59:52] [Server thread/INFO]: [C] lyumz has made the advancement [What a Deal!]
+[16:59:57] [Server thread/INFO]: celicocat lost connection: Disconnected
+[16:59:57] [Server thread/INFO]: [A] celicocat left the game
+[16:59:57] [Server thread/INFO]: [voicechat] Disconnecting client celicocat
+[16:59:58] [Server thread/INFO]: [B] Cyrillll has made the advancement [What a Deal!]
+[17:00:01] [Server thread/INFO]: C1rclee lost connection: Disconnected
+[17:00:01] [Server thread/INFO]: [S] C1rclee left the game
+[17:00:01] [Server thread/INFO]: [voicechat] Disconnecting client C1rclee
+[17:00:23] [Server thread/INFO]: [ItsDustiyn: Set the world border damage buffer to 999999986991104.00 block(s)]
+[17:00:28] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:00:48] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to [B] Cyrillll]
+[17:01:00] [Server thread/INFO]: <[C] 5tr__> meow
+[17:01:05] [Server thread/INFO]: Aethnith lost connection: Disconnected
+[17:01:05] [Server thread/INFO]: [A] Aethnith left the game
+[17:01:05] [Server thread/INFO]: [voicechat] Disconnecting client Aethnith
+[17:01:10] [User Authenticator #14/INFO]: UUID of player Shadow1506 is 5a82a2d1-fd38-4731-a716-c18d78770e91
+[17:01:11] [Server thread/INFO]: Shadow1506[/203.175.163.210:50119] logged in with entity id 19513 at (-276.3732596689294, 62.231523797587016, -189.48746304326568)
+[17:01:11] [Server thread/INFO]: [A] Shadow1506 joined the game
+[17:01:11] [Server thread/INFO]: [voicechat] Received secret request of Shadow1506 (20)
+[17:01:11] [Server thread/INFO]: [voicechat] Sent secret to Shadow1506
+[17:01:11] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 5a82a2d1-fd38-4731-a716-c18d78770e91
+[17:01:12] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 5a82a2d1-fd38-4731-a716-c18d78770e91
+[17:01:12] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player Shadow1506 (5a82a2d1-fd38-4731-a716-c18d78770e91) successfully connected to voice chat
+[17:01:24] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:01:28] [Server thread/INFO]: [ItsDustiyn: Teleported [A] Shadow1506 to [B] Centrifugal28]
+[17:01:39] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to 6000.500000, 114.725898, 2436.590259]
+[17:01:42] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:01:45] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Survival Mode]
+[17:01:57] [Server thread/INFO]: <ItsDustiyn> u can survive outside border for a bit now
+[17:02:04] [Server thread/INFO]: <ItsDustiyn> ill shrink the world border now
+[17:02:15] [Server thread/INFO]: <ItsDustiyn> if nayone is outside of worldborder tell me :aga:
+[17:02:29] [Server thread/INFO]: <[C] 5tr__> ItsDustiyn check
+[17:02:32] [Server thread/INFO]: <[C] 5tr__> discord
+[17:02:39] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:02:41] [Server thread/INFO]: <ItsDustiyn> where
+[17:02:42] [Server thread/INFO]: <ItsDustiyn> tell me
+[17:02:50] [Server thread/INFO]: [ItsDustiyn: Shrinking the world border to 5000.0 block(s) wide over 30.00 second(s)]
+[17:02:53] [Server thread/INFO]: <[S] Paikia> yo
+[17:02:55] [Server thread/INFO]: <[B] Centrifugal28> tell me why
+[17:02:56] [Server thread/INFO]: <[S] Paikia> why is border
+[17:03:05] [Server thread/INFO]: <ItsDustiyn> its fine doesnt dela dmg
+[17:03:08] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to [B] Cyrillll]
+[17:03:09] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:03:27] [Server thread/INFO]: <[C] 5tr__> Paikia border should be at least 5k blocks
+[17:03:30] [Server thread/INFO]: <[S] Paikia> bro
+[17:03:32] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to [B] Cyrillll]
+[17:03:33] [Server thread/INFO]: <[S] Paikia> IM OUTSIDE
+[17:03:35] [Server thread/INFO]: <[C] 5tr__> like 2.5k is wayy to less
+[17:03:37] [Server thread/INFO]: [ItsDustiyn: Teleported [C] lyumz to [B] Cyrillll]
+[17:03:56] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to [S] Paikia]
+[17:04:17] [Server thread/INFO]: [ItsDustiyn: Growing the world border to 7500.0 blocks wide over 30.00 seconds]
+[17:04:20] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:04:46] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:04:53] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:05:20] [Server thread/INFO]: Shadow1506 lost connection: Disconnected
+[17:05:20] [Server thread/INFO]: [A] Shadow1506 left the game
+[17:05:20] [Server thread/INFO]: [voicechat] Disconnecting client Shadow1506
+[17:05:32] [Server thread/INFO]: ItsDustiyn has made the advancement [Ol' Betsy]
+[17:05:32] [Server thread/INFO]: Villager class_1646['Villager'/8385, l='ServerLevel[world]', x=2244.65, y=-11.44, z=3715.55] died, message: 'Villager was blown up by ItsDustiyn'
+[17:05:38] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:07:07] [Server thread/INFO]: Locating element minecraft:village_plains took 49 ms
+[17:07:11] [Server thread/INFO]: Locating element minecraft:village_savanna took 0 ms
+[17:07:37] [Server thread/WARN]: 5tr__ was kicked for floating too long!
+[17:07:37] [Server thread/INFO]: 5tr__ lost connection: Flying is not enabled on this server
+[17:07:37] [Server thread/INFO]: [C] 5tr__ left the game
+[17:07:37] [Server thread/INFO]: [voicechat] Disconnecting client 5tr__
+[17:07:37] [Server thread/WARN]: handleDisconnection() called twice
+[17:07:47] [User Authenticator #15/INFO]: UUID of player 5tr__ is e3513a51-8db5-4c38-8203-055c0f0bc681
+[17:07:50] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:07:50] [Server thread/INFO]: 5tr__[/27.54.171.89:57204] logged in with entity id 27242 at (888.7904595101048, 64.12418707874468, -29.300258947111065)
+[17:07:50] [Server thread/INFO]: [C] 5tr__ joined the game
+[17:07:50] [Server thread/INFO]: [voicechat] Received secret request of 5tr__ (20)
+[17:07:50] [Server thread/INFO]: [voicechat] Sent secret to 5tr__
+[17:07:51] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player e3513a51-8db5-4c38-8203-055c0f0bc681
+[17:07:52] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player e3513a51-8db5-4c38-8203-055c0f0bc681
+[17:07:52] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player 5tr__ (e3513a51-8db5-4c38-8203-055c0f0bc681) successfully connected to voice chat
+[17:07:53] [Server thread/INFO]: [ItsDustiyn: Teleported [S] Paikia to ItsDustiyn]
+[17:07:57] [Server thread/INFO]: <[C] 5tr__> sonion
+[17:07:59] [Server thread/INFO]: <[C] 5tr__> i got kicked
+[17:08:02] [Server thread/INFO]: [ItsDustiyn: Teleported [C] KSchlam to ItsDustiyn]
+[17:08:03] [Server thread/INFO]: <[C] 5tr__> "flying is not allowed"
+[17:08:04] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:08:08] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:08:13] [Server thread/INFO]: <[B] Centrifugal28> quit flying then
+[17:08:15] [Server thread/INFO]: <[B] Cyrillll> ban that kid
+[17:08:20] [Server thread/INFO]: <[B] Cyrillll> u were the one lagging the server
+[17:08:20] [Server thread/INFO]: <[C] 5tr__> cant help bro
+[17:08:21] [Server thread/INFO]: <[B] Centrifugal28> ban that biu
+[17:08:26] [Server thread/INFO]: <[B] Cyrillll> holy shittings bro
+[17:08:28] [Server thread/INFO]: <[C] 5tr__> sorry guys
+[17:08:30] [Server thread/INFO]: <[C] 5tr__> i admit
+[17:08:51] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:08:53] [Server thread/INFO]: enzoxz_ lost connection: Disconnected
+[17:08:53] [Server thread/INFO]: [B] enzoxz_ left the game
+[17:08:53] [Server thread/INFO]: [voicechat] Disconnecting client enzoxz_
+[17:08:56] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:10:03] [Server thread/INFO]: Villager class_1646['Villager'/29919, l='ServerLevel[world]', x=1787.65, y=-30.44, z=1980.48] died, message: 'Villager was slain by ItsDustiyn'
+[17:10:16] [Server thread/INFO]: ItsDustiyn has made the advancement [Who is Cutting Onions?]
+[17:10:19] [User Authenticator #16/INFO]: UUID of player Shadow1506 is 5a82a2d1-fd38-4731-a716-c18d78770e91
+[17:10:20] [Server thread/INFO]: Shadow1506[/203.175.163.210:24543] logged in with entity id 30451 at (-1992.175732367332, -24.0, -1334.1029366198068)
+[17:10:20] [Server thread/INFO]: [A] Shadow1506 joined the game
+[17:10:21] [Server thread/INFO]: [voicechat] Received secret request of Shadow1506 (20)
+[17:10:21] [Server thread/INFO]: [voicechat] Sent secret to Shadow1506
+[17:10:22] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully authenticated player 5a82a2d1-fd38-4731-a716-c18d78770e91
+[17:10:22] [Server thread/INFO]: <[C] 5tr__> who
+[17:10:23] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Successfully validated connection of player 5a82a2d1-fd38-4731-a716-c18d78770e91
+[17:10:23] [VoiceChatPacketProcessingThread/INFO]: [voicechat] Player Shadow1506 (5a82a2d1-fd38-4731-a716-c18d78770e91) successfully connected to voice chat
+[17:10:42] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:10:53] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:11:04] [Server thread/INFO]: [A] Shadow1506 has made the advancement [Sweet Dreams]
+[17:11:55] [Server thread/INFO]: [ItsDustiyn: Teleported [S] Paikia to ItsDustiyn]
+[17:12:11] [Server thread/INFO]: [ItsDustiyn: Teleported [C] KSchlam to ItsDustiyn]
+[17:12:42] [Server thread/INFO]: <[C] 5tr__> how much money do u get for killing someone?
+[17:12:45] [Server thread/INFO]: <ItsDustiyn> 20
+[17:12:49] [Server thread/INFO]: [B] Centrifugal28 has made the advancement [Take Aim]
+[17:12:51] [Server thread/INFO]: <[C] 5tr__> alr
+[17:14:45] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:14:49] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:16:24] [Server thread/INFO]: Villager class_1646['Villager'/36450, l='ServerLevel[world]', x=1778.97, y=-32.00, z=1984.44] died, message: 'Villager was slain by ItsDustiyn'
+[17:16:52] [Server thread/INFO]: Villager class_1646['Villager'/37714, l='ServerLevel[world]', x=1780.55, y=-33.00, z=1983.64] died, message: 'Villager was slain by ItsDustiyn'
+[17:17:07] [Server thread/INFO]: <[C] 5tr__> are tridents allowed?
+[17:18:43] [Server thread/INFO]: Villager class_1646['Villager'/39036, l='ServerLevel[world]', x=1781.10, y=-33.00, z=1984.39] died, message: 'Villager was slain by ItsDustiyn'
+[17:18:47] [Server thread/INFO]: [B] Cyrillll has made the advancement [Local Brewery]
+[17:19:27] [Server thread/INFO]: Villager class_1646['Villager'/40125, l='ServerLevel[world]', x=1780.30, y=-31.50, z=1984.70] died, message: 'Villager was slain by ItsDustiyn'
+[17:20:39] [Server thread/WARN]: Mismatch in destroy block pos: class_2338{x=-2436, y=97, z=2525} class_2338{x=-2437, y=96, z=2525}
+[17:20:39] [Server thread/WARN]: Mismatch in destroy block pos: class_2338{x=-2436, y=97, z=2525} class_2338{x=-2437, y=96, z=2525}
+[17:21:28] [Server thread/INFO]: Villager class_1646['Villager'/41418, l='ServerLevel[world]', x=1780.30, y=-31.00, z=1984.70] died, message: 'Villager was slain by ItsDustiyn'
+[17:21:29] [Server thread/INFO]: Villager class_1646['Villager'/41817, l='ServerLevel[world]', x=1780.85, y=-31.00, z=1984.85] died, message: 'Villager was slain by ItsDustiyn'
+[17:21:48] [Server thread/INFO]: <[C] 5tr__> eep
+[17:21:50] [Server thread/INFO]: 5tr__ lost connection: Disconnected
+[17:21:50] [Server thread/INFO]: [C] 5tr__ left the game
+[17:21:50] [Server thread/INFO]: [voicechat] Disconnecting client 5tr__
+[17:22:12] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:22:43] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:23:29] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:23:30] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:23:31] [Server thread/INFO]: <[S] Paikia> w
+[17:23:36] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:23:38] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:23:53] [Server thread/INFO]: Villager class_1646['Villager'/43698, l='ServerLevel[world]', x=1780.50, y=-31.50, z=1984.70] died, message: 'Villager was slain by ItsDustiyn'
+[17:24:31] [Server thread/INFO]: Villager class_1646['Villager'/44077, l='ServerLevel[world]', x=1781.49, y=-32.45, z=1984.50] died, message: 'Villager was slain by ItsDustiyn'
+[17:25:17] [Server thread/INFO]: Villager class_1646['Villager'/44366, l='ServerLevel[world]', x=1782.49, y=-31.45, z=1984.50] died, message: 'Villager was slain by ItsDustiyn'
+[17:25:54] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:25:56] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:25:58] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:25:59] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:26:01] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:26:03] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:26:22] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:26:24] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:26:35] [Server thread/INFO]: Villager class_1646['Villager'/45029, l='ServerLevel[world]', x=1780.70, y=-28.04, z=1984.56] died, message: 'Villager was slain by ItsDustiyn'
+[17:26:57] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:27:01] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:27:04] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:27:08] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:27:09] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:27:10] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:27:12] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:27:25] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:27:27] [Server thread/INFO]: Villager class_1646['Villager'/45193, l='ServerLevel[world]', x=1785.45, y=-31.00, z=1982.57] died, message: 'Villager was slain by ItsDustiyn'
+[17:27:44] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:27:54] [Server thread/INFO]: [ItsDustiyn: Shrinking the world border to 5000.0 block(s) wide over 10.00 second(s)]
+[17:28:01] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to [S] Paikia]
+[17:28:05] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:28:06] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:28:20] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:29:32] [Server thread/WARN]: [Warden] Cyrillll tripped the bucket-drain limit at -2482, -14, 2440
+[17:29:46] [Server thread/INFO]: <[B] Cyrillll> ItsDustiyn the water thing is still bugging out
+[17:29:49] [Server thread/INFO]: <[B] Cyrillll> it shjwos smt abt warden
+[17:29:55] [Server thread/INFO]: <[B] Cyrillll> and refuse to letm epick up water
+[17:30:26] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:30:29] [Server thread/INFO]: [ItsDustiyn: Teleported ItsDustiyn to [B] Cyrillll]
+[17:31:23] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:32:25] [Server thread/INFO]: [ItsDustiyn: Applied effect Resistance to ItsDustiyn]
+[17:32:30] [Server thread/INFO]: [ItsDustiyn: Applied effect Saturation to ItsDustiyn]
+[17:32:32] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Survival Mode]
+[17:32:57] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:33:09] [Server thread/INFO]: [C] KSchlam has made the advancement [Cover Me with Diamonds]
+[17:33:22] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:33:28] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Creative Mode]
+[17:33:34] [Server thread/INFO]: [ItsDustiyn: Set own game mode to Spectator Mode]
+[17:33:38] [Server thread/INFO]: ItsDustiyn lost connection: Disconnected
+[17:33:38] [Server thread/INFO]: ItsDustiyn left the game
+[17:33:38] [Server thread/INFO]: [voicechat] Disconnecting client ItsDustiyn
+[17:36:20] [Server thread/INFO]: Villager class_1646['Villager'/15440, l='ServerLevel[world]', x=-1999.70, y=-22.95, z=-1323.29] died, message: 'Villager was slain by [B] Centrifugal28'
+[17:37:29] [Server thread/INFO]: [Server] restarting in 6-7s
+[17:37:44] [Server thread/INFO]: [Server] warden lower version since stupid me make fake moduel now hard use bucket
+[17:37:48] [Server thread/INFO]: Paikia lost connection: Disconnected
+[17:37:48] [Server thread/INFO]: [S] Paikia left the game
+[17:37:48] [Server thread/INFO]: [voicechat] Disconnecting client Paikia
+[17:37:48] [Server thread/INFO]: [Server] thanks for the understanding
+[17:37:49] [Server thread/INFO]: KSchlam lost connection: Disconnected
+[17:37:49] [Server thread/INFO]: [C] KSchlam left the game
+[17:37:49] [Server thread/INFO]: [voicechat] Disconnecting client KSchlam
+[17:37:55] [Server thread/INFO]: Stopping the server
+[17:37:55] [Server thread/INFO]: Stopping server
+[17:37:55] [Server thread/INFO]: Saving players
+[17:37:55] [Server thread/INFO]: Cyrillll lost connection: Server closed
+[17:37:55] [Server thread/INFO]: [B] Cyrillll left the game
+[17:37:55] [Server thread/INFO]: crischutu07 lost connection: Server closed
+[17:37:55] [Server thread/INFO]: [F] crischutu07 left the game
+[17:37:55] [Server thread/INFO]: Shadow1506 lost connection: Server closed
+[17:37:55] [Server thread/INFO]: [A] Shadow1506 left the game
+[17:37:55] [Server thread/INFO]: Saving worlds
+[17:37:55] [Server thread/INFO]: ServerLevel[world]/minecraft:overworld: waiting for 8596 chunks to unload
+[17:37:56] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[17:37:56] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[17:37:56] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[17:37:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[17:37:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[17:37:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[17:37:56] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[17:37:56] [C2ME Storage #3/INFO]: Storage thread Thread[#68,C2ME Storage #3,8,main] stopped
+[17:37:56] [C2ME Storage #2/INFO]: Storage thread Thread[#65,C2ME Storage #2,8,main] stopped
+[17:37:56] [C2ME Storage #1/INFO]: Storage thread Thread[#64,C2ME Storage #1,8,main] stopped
+[17:37:56] [C2ME Storage #5/INFO]: Storage thread Thread[#71,C2ME Storage #5,8,main] stopped
+[17:37:56] [C2ME Storage #6/INFO]: Storage thread Thread[#72,C2ME Storage #6,8,main] stopped
+[17:37:56] [C2ME Storage #4/INFO]: Storage thread Thread[#70,C2ME Storage #4,8,main] stopped
+[17:37:56] [C2ME Storage #8/INFO]: Storage thread Thread[#74,C2ME Storage #8,8,main] stopped
+[17:37:56] [C2ME Storage #7/INFO]: Storage thread Thread[#73,C2ME Storage #7,8,main] stopped
+[17:37:56] [C2ME Storage #9/INFO]: Storage thread Thread[#75,C2ME Storage #9,8,main] stopped
+[17:37:57] [Server thread/INFO]: Thread Query Listener stopped

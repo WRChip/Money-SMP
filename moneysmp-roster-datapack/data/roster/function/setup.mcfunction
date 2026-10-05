@@ -1,0 +1,112 @@
+# run with: /function roster:setup
+# Note: your list said "Yellow" but the mod's six teams are Red, Blue, Purple,
+# Green, White, Gold (Yellow was renamed to Gold) -- that block is mapped to
+# Gold below.
+
+moneysmp team enable Purple
+moneysmp tier set motoneco F
+moneysmp tier set commkel C
+moneysmp tier set enzoxz_ B
+moneysmp tier set Mouqtain A
+moneysmp tier set 2put S
+moneysmp team set motoneco Purple
+moneysmp team set commkel Purple
+moneysmp team set enzoxz_ Purple
+moneysmp team set Mouqtain Purple
+moneysmp team set 2put Purple
+moneysmp team leader motoneco
+moneysmp set motoneco 660
+moneysmp set commkel 0
+moneysmp set enzoxz_ 0
+moneysmp set Mouqtain 0
+moneysmp set 2put 0
+
+moneysmp team enable White
+moneysmp tier set kagezuki F
+moneysmp tier set kschlam C
+moneysmp tier set blizzy09 B
+moneysmp tier set djrx_ A
+moneysmp tier set Paikia S
+moneysmp team set kagezuki White
+moneysmp team set kschlam White
+moneysmp team set blizzy09 White
+moneysmp team set djrx_ White
+moneysmp team set Paikia White
+moneysmp team leader kagezuki
+moneysmp set kagezuki 300
+moneysmp set kschlam 0
+moneysmp set blizzy09 0
+moneysmp set djrx_ 0
+moneysmp set Paikia 0
+
+moneysmp team enable Red
+moneysmp tier set Sentimc F
+moneysmp tier set endable C
+moneysmp tier set rxnzo B
+moneysmp tier set aethnithalt A
+moneysmp tier set c1rclee S
+moneysmp team set Sentimc Red
+moneysmp team set endable Red
+moneysmp team set rxnzo Red
+moneysmp team set aethnithalt Red
+moneysmp team set c1rclee Red
+moneysmp team leader Sentimc
+moneysmp set Sentimc 610
+moneysmp set endable 0
+moneysmp set rxnzo 0
+moneysmp set aethnithalt 0
+moneysmp set c1rclee 0
+
+moneysmp team enable Green
+moneysmp tier set theinfernix F
+moneysmp tier set lyumz C
+moneysmp tier set cyrillll B
+moneysmp tier set celicocat A
+moneysmp tier set kur0ba7 S
+moneysmp team set theinfernix Green
+moneysmp team set lyumz Green
+moneysmp team set cyrillll Green
+moneysmp team set celicocat Green
+moneysmp team set kur0ba7 Green
+moneysmp team leader theinfernix
+moneysmp set theinfernix 90
+moneysmp set lyumz 0
+moneysmp set cyrillll 0
+moneysmp set celicocat 0
+moneysmp set kur0ba7 0
+
+moneysmp team enable Blue
+moneysmp tier set crischutu07 F
+moneysmp tier set icedmellow C
+moneysmp tier set centrifugal28 B
+moneysmp tier set Shadow1506 A
+moneysmp tier set Tubsyyy S
+moneysmp team set crischutu07 Blue
+moneysmp team set icedmellow Blue
+moneysmp team set centrifugal28 Blue
+moneysmp team set Shadow1506 Blue
+moneysmp team set Tubsyyy Blue
+moneysmp team leader crischutu07
+moneysmp set crischutu07 410
+moneysmp set icedmellow 0
+moneysmp set centrifugal28 0
+moneysmp set Shadow1506 0
+moneysmp set Tubsyyy 0
+
+moneysmp team enable Gold
+moneysmp tier set s1mzx F
+moneysmp tier set 5tr__ C
+moneysmp tier set Dashingflash B
+moneysmp tier set nobecc A
+moneysmp tier set hirowho S
+moneysmp team set s1mzx Gold
+moneysmp team set 5tr__ Gold
+moneysmp team set Dashingflash Gold
+moneysmp team set nobecc Gold
+moneysmp team set hirowho Gold
+moneysmp team leader s1mzx
+moneysmp set s1mzx 25
+moneysmp set 5tr__ 0
+moneysmp set Dashingflash 0
+moneysmp set nobecc 0
+moneysmp set hirowho 0

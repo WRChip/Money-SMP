@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "dev.flame.chunkguard.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "server": [
+    "BlockEntityMixin",
+    "ChunkDataMixin",
+    "ChunkDataBlockEntityDataAccessor",
+    "ScreenHandlerMixin",
+    "ItemEntityMixin",
+    "ItemFrameEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
