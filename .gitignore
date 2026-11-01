@@ -1,1 +1,9 @@
 target/
+__pycache__/
+*.pyc
+spawn-fix-20260914/proto-env/
+grim-build*.log
+spawn-fix-20260914/server.log
+spawn-fix-20260914/spawn-check.log
+build/
+.gradle/
