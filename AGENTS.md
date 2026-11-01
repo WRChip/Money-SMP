@@ -22,6 +22,7 @@
 ## Traps
 - First Gradle build downloads Gradle 9.5.1 plus Minecraft and mappings (about 1 minute per mod).
 - `gradlew` is committed without the exec bit; use `chmod +x` on Linux.
+- Do not put `-Djava.io.tmpdir=C:/temp` back in `gradlew`; it breaks every non-Windows build.
 - Audit docs link to jars under `fabric/build` and `Warden/build` that are not in this repo.
 - Ignored: `proto-env/`, `__pycache__`, `grim-build*.log`, `build/`, `.gradle/`, `target/`; don't re-add.
 - `spawn-fix-*/proto/spark/*_pb2.py` is generated protobuf, not hand-written.
